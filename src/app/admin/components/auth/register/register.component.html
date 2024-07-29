@@ -1,0 +1,25 @@
+<div class="container">
+	<div class="screen">
+			<form class="login" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+				<div class="login__field">
+                    <label for="password" class="password"> Username </label>
+					<input type="text" formControlName="username" class="login__input" >
+				</div>
+                <div class="login__field">
+                    <label for="password" class="password"> Email</label>
+					<input type="email" formControlName="email" class="login__input" >
+				</div>
+                <div class="login__field">
+                    <label for="password" class="password"> Password</label>
+					<input type="password" formControlName="password" class="login__input" >
+				</div>
+                <div class="login__field">
+                    <label for="password" class="password">Password confirmation</label>
+					<input type="email" formControlName="password_conf" class="login__input" >
+				</div>
+				<button class="button login__submit">
+					<span class="button__text">SAVE</span>	
+				</button>
+			</form>
+	</div>
+</div> 
