@@ -6,10 +6,16 @@
                     <label for="password" class="password"> Email</label>
 					<input type="email" formControlName="email" class="login__input" >
 				</div>
+				<div *ngIf="submitted && loginForm.get('email')?.hasError('required')">
+					Email do not match!
+				  </div>
                 <div class="login__field">
                     <label for="password" class="password"> Password</label>
 					<input type="password" formControlName="password" class="login__input" >
 				</div>
+				<div *ngIf="submitted && loginForm.get('password')?.hasError('required')">
+					password do not match!
+				  </div>
 				<button class="button login__submit">
 					<span class="button__text">Log In Now</span>	
 				</button>

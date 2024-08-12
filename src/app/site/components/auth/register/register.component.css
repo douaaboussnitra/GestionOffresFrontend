@@ -1,5 +1,4 @@
 
-
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -15,7 +14,6 @@
     background-repeat: no-repeat;
     background-size: cover; 
 }
-
 .screen {	
 	background:#805cbe;
 	position: relative;	
@@ -26,9 +24,8 @@
 .login {
 	width: 350px;
 	padding: 30px;
-	padding-top: 156px;
+	
 }
-
 .login__field {
 	padding: 20px 0px;	
 	position: relative;	
@@ -41,7 +38,7 @@
 	padding-left: 24px;
 	font-weight: 700;
 	width: 100%;
-	transition: .2s;
+	transition: .1s;
     margin-top: 15px;
     color: #FFF;
 }
@@ -49,7 +46,6 @@
 	outline: none;
 	border-bottom-color: #6d0ea086;
 }
-
 .login__submit {
 	background: #fff;
 	font-size: 14px;
@@ -65,9 +61,8 @@
 	color: #4C489D;
 	box-shadow: 0px 2px 2px #5C5696;
 	cursor: pointer;
-	transition: .2s;
+	transition: .1s;
     justify-content: center;
-
 }
 .login__submit:hover {
 	border-color: #6A679E;
@@ -76,13 +71,13 @@
 .password {
 	color: #ffffff;
     position: absolute;
-    height: 140px;
+    height: auto;
     display: flex;
     flex-direction: column;
     font-size: 15px;
 }
 
-
-
-
-
+input  {
+	outline: none !important;
+	z-index: 10 !important;
+}

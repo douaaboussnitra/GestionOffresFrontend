@@ -7,6 +7,7 @@ import { AuthService } from '../../auth.service';
   styleUrls: ['./login.component.css'] })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+submitted: boolean = false;
   
   constructor(private fbl : FormBuilder, private aus : AuthService ) {
     this.loginForm = this.fbl.group({
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
   onSubmit(): void
   {
+    this.submitted = true;
     if(this.loginForm.valid) {  
         this.aus.login(this.loginForm.value).subscribe(Response=>{
           console.log('successful', Response); },

@@ -1,4 +1,5 @@
 
+
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -14,8 +15,9 @@
     background-repeat: no-repeat;
     background-size: cover; 
 }
+
 .screen {	
-	background:#805cbe;
+	background:#5f1db0;
 	position: relative;	
 	height: 600px;
 	width: 360px;	
@@ -24,8 +26,9 @@
 .login {
 	width: 350px;
 	padding: 30px;
-	
+	padding-top: 156px;
 }
+
 .login__field {
 	padding: 20px 0px;	
 	position: relative;	
@@ -46,6 +49,7 @@
 	outline: none;
 	border-bottom-color: #6d0ea086;
 }
+
 .login__submit {
 	background: #fff;
 	font-size: 14px;
@@ -63,6 +67,7 @@
 	cursor: pointer;
 	transition: .2s;
     justify-content: center;
+
 }
 .login__submit:hover {
 	border-color: #6A679E;
@@ -76,3 +81,13 @@
     flex-direction: column;
     font-size: 15px;
 }
+
+input  {
+	outline: none !important;
+	z-index: 10 !important;
+}
+
+
+
+
+
