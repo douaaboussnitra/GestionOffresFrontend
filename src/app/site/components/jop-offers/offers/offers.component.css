@@ -3,6 +3,8 @@ header {
   background-color: #decce6;
   padding: 10px 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
 }
 
 nav ul {
@@ -67,4 +69,72 @@ h3 {
 .date {
   color: #777;
   font-size: 14px;
+}
+
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f3f3f3;
+}
+
+.search-container {
+  background-color: #8137c1;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  width: 96%;
+  margin-left: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-container h1 {
+  color: #fff;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-input, .search-select, .search-button {
+  border: none;
+  border-radius: 25px;
+  height: 50px;
+  margin: 0 10px;
+  font-size: 16px;
+  padding: 0 20px;
+}
+
+.search-input {
+  flex: 1;
+}
+
+.search-select {
+  width: 200px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.search-button {
+  background-color: #fff;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.search-button img {
+  width: 24px;
+  height: 24px;
 }
