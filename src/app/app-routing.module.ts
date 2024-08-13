@@ -10,6 +10,11 @@ const routes: Routes = [
       path: 'jop-offers',
       loadChildren : () => import ("./site/components/jop-offers/jop-offers.module") .then(m=>m.JopOffersModule)
       },
+
+      {
+        path: '**',
+      redirectTo: 'auth/login'
+      },
 ];
 
 @NgModule({
