@@ -1,0 +1,64 @@
+<div class="formGroup">
+<div class="form-container">
+    <h1>Publier une Offre d'Emploi ou de Stage</h1>
+    <form action="/submit-job" method="POST">
+        <!-- Job Title -->
+        <div class="form-group">
+            <label for="title">Titre du poste</label>
+            <input type="text" id="title" name="title" placeholder="Ex: Développeur Web" required>
+        </div>
+
+        <!-- Company Name -->
+        <div class="form-group">
+            <label for="company">Nom de l'entreprise</label>
+            <input type="text" id="company" name="company" placeholder="Ex: OpenAI" required>
+        </div>
+
+        <!-- Location -->
+        <div class="form-group">
+            <label for="location">Lieu</label>
+            <input type="text" id="location" name="location" placeholder="Ex: Paris, France" required>
+        </div>
+
+        <!-- Job Type -->
+        <div class="form-group">
+            <label for="type">Type de contrat</label>
+            <select id="type" name="type" required>
+                <option value="">Sélectionnez</option>
+                <option value="fulltime">Temps plein</option>
+                <option value="parttime">Temps partiel</option>
+                <option value="internship">Stage</option>
+                <option value="freelance">Freelance</option>
+            </select>
+        </div>
+
+        <!-- Job Description -->
+        <div class="form-group">
+            <label for="description">Description du poste</label>
+            <textarea id="description" name="description" rows="5" placeholder="Détails sur le poste..." required></textarea>
+        </div>
+
+        <!-- Required Skills -->
+        <div class="form-group">
+            <label for="skills">Compétences requises</label>
+            <input type="text" id="skills" name="skills" placeholder="Ex: JavaScript, React, Node.js" required>
+        </div>
+
+        <!-- Salary -->
+        <div class="form-group">
+            <label for="salary">Salaire (facultatif)</label>
+            <input type="text" id="salary" name="salary" placeholder="Ex: 50,000 € / an">
+        </div>
+
+        <!-- Contact Email -->
+        <div class="form-group">
+            <label for="email">Email de contact</label>
+            <input type="email" id="email" name="email" placeholder="contact@entreprise.com" required>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group">
+            <button type="submit" class="submit-button">Publier l'offre</button>
+        </div>
+    </form>
+</div>
