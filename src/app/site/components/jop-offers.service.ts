@@ -4,6 +4,14 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class jopOffersService {
+  private data: any = {};
 
-  constructor() { }
-}
+  setData(formData: any) {
+    this.data = formData;
+  }
+
+  getData() {
+    return this.data;
+
+ }
+ }

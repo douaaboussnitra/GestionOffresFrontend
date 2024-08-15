@@ -1,21 +1,18 @@
-<!-- Navbar -->
-
-
 <!-- Main Section -->
 <section class="main-section">
-    <h1>Inscription Express</h1>
-    <div class="options">
-        <!-- Candidate Section -->
-        <div class="option-card">
-            <img  class="img_c_r" src="assets/condidat.svg" alt="Candidate Image">
-            <h2>Vous êtes un candidat</h2>
-            <button>Cliquez ici</button>
-        </div>
-        <!-- Recruiter Section -->
-        <div class="option-card">
-            <img  class="img_c_r" src="assets/recruteur.svg" alt="Recruiter Image">
-            <h2>Vous êtes un recruteur</h2>
-            <button>Cliquez ici</button>
-        </div>
-    </div>
+  <h1>Inscription Express</h1>
+  <div class="options">
+      <!-- Candidate Section -->
+      <div class="option-card">
+          <img class="img_c_r" src="assets/condidat.svg" alt="Candidate Image">
+          <h2>Vous êtes un candidat</h2>
+          <button (click)="onCandidateClick()">Cliquez ici</button>
+      </div>
+      <!-- Recruiter Section -->
+      <div class="option-card">
+          <img class="img_c_r" src="assets/recruteur.svg" alt="Recruiter Image">
+          <h2>Vous êtes un recruteur</h2>
+          <button (click)="onRecruiterClick()">Cliquez ici</button>
+      </div>
+  </div>
 </section>

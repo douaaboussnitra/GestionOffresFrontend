@@ -1,0 +1,46 @@
+<section class="apply-form-section">
+  <h1>Postuler à un Offre d'Emploi ou Stage</h1>
+  <form class="apply-form">
+    <!-- Personal Information -->
+    <div class="form-group">
+      <label for="fullName">Nom Complet</label>
+      <input type="text" id="fullName" name="fullName" placeholder="Votre nom complet" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Votre adresse email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Téléphone</label>
+      <input type="tel" id="phone" name="phone" placeholder="Votre numéro de téléphone" required>
+    </div>
+
+    <!-- Job Preference -->
+    <div class="form-group">
+      <label for="jobType">Type de Poste</label>
+      <select id="jobType" name="jobType" required>
+        <option value="emploi">Emploi</option>
+        <option value="stage">Stage</option>
+      </select>
+    </div>
+
+  
+
+    <!-- Attachments -->
+    <div class="form-group">
+      <label for="resume">CV (Format PDF)</label>
+      <input type="file" id="resume" name="resume" accept=".pdf" required>
+    </div>
+
+    <div class="form-group">
+      <label for="coverLetter">Lettre de Motivation</label>
+      <textarea id="coverLetter" name="coverLetter" rows="5" placeholder="Votre lettre de motivation" required></textarea>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="submit-button">Soumettre la Candidature</button>
+  </form>
+</section>
+
