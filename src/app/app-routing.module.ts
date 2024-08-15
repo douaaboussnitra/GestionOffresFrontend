@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RecruiterMenuComponent } from './site/layout/recruiter-menu/recruiter-menu.component';
 
 const routes: Routes = [
   {
@@ -12,8 +13,13 @@ const routes: Routes = [
       },
 
       {
+        path: 'layout',
+        component : RecruiterMenuComponent
+        },
+
+      {
         path: '**',
-      redirectTo: 'auth/login'
+      redirectTo: 'jop-offers/offers'
       },
 ];
 

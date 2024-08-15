@@ -5,6 +5,8 @@ import { DetailsComponent } from './details/details.component';
 import { FormComponent } from './form/form.component';
 import { ApplyComponent } from './apply/apply.component';
 import { ResultComponent } from './result/result.component';
+import { ListOffersComponent } from './list-offers/list-offers.component';
+import { ApplicationsComponent } from './applications/applications.component';
 
 const routes: Routes = [
     {
@@ -15,7 +17,9 @@ const routes: Routes = [
         { path: 'form', component : FormComponent},
         { path: 'apply', component : ApplyComponent},
         { path: 'result', component : ResultComponent},
-
+        { path: 'liste-offers', component :ListOffersComponent },
+        { path: 'applications', component :ApplicationsComponent },
+        
       ]
       }
   ];

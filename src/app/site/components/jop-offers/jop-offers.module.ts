@@ -5,8 +5,9 @@ import { JopOffersRoutingModule } from './jop-offers-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetailsComponent } from './details/details.component';
 import { FormComponent } from './form/form.component';
-import { PostulerComponent } from './postuler/postuler.component';
 import { ResultComponent } from './result/result.component';
+import { ListOffersComponent } from './list-offers/list-offers.component';
+import { ApplicationsComponent } from './applications/applications.component';
 
 
 @NgModule({
@@ -14,8 +15,9 @@ import { ResultComponent } from './result/result.component';
     offersComponent,
     DetailsComponent,
     FormComponent,
-    PostulerComponent,
-    ResultComponent
+    ResultComponent,
+    ListOffersComponent,
+    ApplicationsComponent
   ],
   imports: [
     CommonModule,

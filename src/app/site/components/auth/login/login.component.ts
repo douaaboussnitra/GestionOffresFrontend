@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,10 +10,10 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 submitted: boolean = false;
   
-  constructor(private fbl : FormBuilder, private aus : AuthService ) {
+  constructor(private fbl : FormBuilder, private aus : AuthService , private router: Router ) {
     this.loginForm = this.fbl.group({
-      email:['',[Validators.required , Validators.email]] ,
-      password:['',[Validators.required]]
+      email:['12345@gamil.com',[Validators.required , Validators.email]] ,
+      password:['123456',[Validators.required]]
       }) ;}
   ngOnInit(): void {}
   onSubmit(): void
@@ -20,7 +21,9 @@ submitted: boolean = false;
     this.submitted = true;
     if(this.loginForm.valid) {  
         this.aus.login(this.loginForm.value).subscribe(Response=>{
-          console.log('successful', Response); },
+          console.log('successful', Response); 
+          this.router.navigate(['/jop-offers/details']);
+        },
         error=>{
           console.log('error' , error); } ) }   
     else

@@ -17,5 +17,5 @@ export class ChooseRoleComponent {
 
   onRecruiterClick() {
     // Navigate to the recruiter registration page
-    this.router.navigate(['/auth/register']);  }
+    this.router.navigate(['/auth/register-recruiter']);  }
 }

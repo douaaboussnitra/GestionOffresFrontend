@@ -5,12 +5,14 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChooseRoleComponent } from './choose-role/choose-role.component';
+import { RegisterRecruiterComponent } from './register-recruiter/register-recruiter.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
-    ChooseRoleComponent
+    ChooseRoleComponent,
+    RegisterRecruiterComponent
   ],
   imports: [
     CommonModule,

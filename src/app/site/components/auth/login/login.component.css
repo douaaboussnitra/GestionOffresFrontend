@@ -87,6 +87,20 @@ input  {
 	z-index: 10 !important;
 }
 
+.signup-container {
+	font-family: Arial, sans-serif;
+	font-size: 16px;
+}
+
+.signup-container a {
+	color: #007BFF;
+	text-decoration: none;
+}
+
+.signup-container a:hover {
+	text-decoration: underline;
+}
+
 
 
 

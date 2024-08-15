@@ -1,0 +1,15 @@
+ /* Ensuring the list is scrollable if it exceeds 10 items */
+ .user-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Optional: Custom scrollbar for better aesthetics */
+.user-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.user-list::-webkit-scrollbar-thumb {
+    background-color: #cbd5e0;
+    border-radius: 4px;
+}
