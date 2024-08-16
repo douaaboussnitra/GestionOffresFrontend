@@ -10,7 +10,7 @@
 	align-items: center;
 	justify-content: center;
 	min-height: 100vh;
-    background-image: url('../../../../../assets/login.webp');
+    background-image: url('../../../../assets/login.webp');
     background-repeat: no-repeat;
     background-size: cover; 
 }

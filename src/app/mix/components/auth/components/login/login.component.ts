@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../../service/auth.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
@@ -22,7 +22,7 @@ submitted: boolean = false;
     if(this.loginForm.valid) {  
         this.aus.login(this.loginForm.value).subscribe(Response=>{
           console.log('successful', Response); 
-          this.router.navigate(['/jop-offers/details']);
+          this.router.navigate(['/job-offers/details']);
         },
         error=>{
           console.log('error' , error); } ) }   

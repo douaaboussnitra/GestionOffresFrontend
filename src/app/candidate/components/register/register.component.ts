@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../auth.service';
+import { AuthService } from 'src/app/mix/components/auth/service/auth.service';
 
 @Component({
   selector: 'app-register',

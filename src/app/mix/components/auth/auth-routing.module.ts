@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { ChooseRoleComponent } from './choose-role/choose-role.component';
-import { RegisterRecruiterComponent } from './register-recruiter/register-recruiter.component';
+import { LoginComponent } from './components/login/login.component';
+import { ChooseRoleComponent } from './components/choose-role/choose-role.component';
+import { RegisterRecruiterComponent } from 'src/app/recruiter/components/register-recruiter/register-recruiter.component';
+import { RegisterComponent } from 'src/app/candidate/components/register/register.component';
 
 const routes: Routes = [
   {

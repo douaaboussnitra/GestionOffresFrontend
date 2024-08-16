@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RecruiterMenuComponent } from './site/layout/recruiter-menu/recruiter-menu.component';
-
+import { RecruiterMenuComponent } from './recruiter/layout/recruiter-menu/recruiter-menu.component';
 const routes: Routes = [
   {
     path: 'auth',
-    loadChildren : () => import ("./site/components/auth/auth.module") .then(m=>m.AuthModule)
+    loadChildren : () => import ("./mix/components/auth/auth.module") .then(m=>m.AuthModule)
     },
     {
-      path: 'jop-offers',
-      loadChildren : () => import ("./site/components/jop-offers/jop-offers.module") .then(m=>m.JopOffersModule)
+      path: 'job-offers',
+      loadChildren : () => import ("./mix/components/job-offers/job-offers.module") .then(m=>m.JopOffersModule)
       },
 
       {
@@ -19,7 +18,7 @@ const routes: Routes = [
 
       {
         path: '**',
-      redirectTo: 'jop-offers/offers'
+      redirectTo: 'job-offers/offers'
       },
 ];
 

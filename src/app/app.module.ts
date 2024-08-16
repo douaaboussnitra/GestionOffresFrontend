@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { FooterComponent } from './footer/footer.component';
-import { RecruiterMenuComponent } from './site/layout/recruiter-menu/recruiter-menu.component';
+import { FooterComponent } from './mix/layout/footer/footer.component';
+import { RecruiterMenuComponent } from './recruiter/layout/recruiter-menu/recruiter-menu.component';
+import { NavbarComponent } from './mix/layout/navbar/navbar.component';
 
 @NgModule({
   declarations: [

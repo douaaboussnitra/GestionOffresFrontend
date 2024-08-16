@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { jopOffersService } from '../../jop-offers.service';
+import { jobOffersService } from 'src/app/mix/components/job-offers/service/job-offers.service';
 
 
 
@@ -11,7 +11,7 @@ import { jopOffersService } from '../../jop-offers.service';
 export class ResultComponent implements OnInit {
   formData: any;
 
-  constructor(private formDataService: jopOffersService) {}
+  constructor(private formDataService: jobOffersService) {}
 
   ngOnInit() {
     this.formData = this.formDataService.getData();

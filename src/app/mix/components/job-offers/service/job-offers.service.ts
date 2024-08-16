@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class jopOffersService {
+export class jobOffersService {
   private data: any = {};
 
   setData(formData: any) {
