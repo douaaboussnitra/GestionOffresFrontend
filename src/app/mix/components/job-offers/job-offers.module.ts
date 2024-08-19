@@ -11,6 +11,7 @@ import { ApplicationsComponent } from 'src/app/recruiter/components/job-offers/a
 
 
 
+
 @NgModule({
   declarations: [
     offersComponent,
@@ -18,7 +19,8 @@ import { ApplicationsComponent } from 'src/app/recruiter/components/job-offers/a
     FormComponent,
     ResultComponent,
     ListOffersComponent,
-    ApplicationsComponent
+    ApplicationsComponent,
+    
   ],
   imports: [
     CommonModule,

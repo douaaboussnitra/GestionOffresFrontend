@@ -17,21 +17,21 @@
 				  </div>
                 <div class="login__field">
                     <label for="password" class="password"> Password</label>
-					<input type="password" formControlName="password" class="login__input" >
+					<input type="password" formControlName="password" class="login__input" #pass (change)="passwordMatchChange(pass.value, confirm.value)">
 				</div>
-				<div *ngIf="submitted && registerForm.get('password')?.hasError('required')">
+				<div *ngIf="passwordMatch">
 					Passwords do not match!
 				  </div>
                 <div class="login__field">
                     <label for="password" class="password">Password confirmation</label>
-					<input type="email" formControlName="password_conf" class="login__input" >
+					<input type="email" formControlName="password_conf" class="login__input" (change)="passwordMatchChange(pass.value, confirm.value)" #confirm>
 				</div>
-				<div *ngIf="submitted && registerForm.get('password_conf')?.hasError('passwordMismatch')">
+				<div *ngIf="passwordMatch">
 					Passwords do not match!
 				  </div>
 				<button class="button login__submit">
-					<span class="button__text">SAVE</span>	
+					<span class="button__text">SAVE</span>
 				</button>
 			</form>
 	</div>
-</div> 
+</div>

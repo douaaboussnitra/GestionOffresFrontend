@@ -9,24 +9,30 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 submitted: boolean = false;
-  
+
   constructor(private fbl : FormBuilder, private aus : AuthService , private router: Router ) {
     this.loginForm = this.fbl.group({
-      email:['12345@gamil.com',[Validators.required , Validators.email]] ,
+      email:['tarik@example.com',[Validators.required , Validators.email]] ,
       password:['123456',[Validators.required]]
       }) ;}
   ngOnInit(): void {}
   onSubmit(): void
   {
     this.submitted = true;
-    if(this.loginForm.valid) {  
-        this.aus.login(this.loginForm.value).subscribe(Response=>{
-          console.log('successful', Response); 
+
+    if(this.loginForm.valid) {
+        this.aus.login(this.loginForm.value).subscribe({next: (Response) => {
+          console.log('successful', Response);
           this.router.navigate(['/job-offers/details']);
         },
-        error=>{
-          console.log('error' , error); } ) }   
+      error: (error)=> {
+        console.log('error' , error); }
+      })
+     }
     else
-    {console.log('invalid form');} }}
-  
+    {console.log('invalid form');}
+
+  }
+
+}
 

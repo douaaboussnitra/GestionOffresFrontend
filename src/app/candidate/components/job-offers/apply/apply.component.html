@@ -1,42 +1,42 @@
 <section class="apply-form-section">
   <h1>Postuler à un Offre d'Emploi ou Stage</h1>
-  <form class="apply-form">
+  <form class="apply-form" [formGroup]="applyForm">
     <!-- Personal Information -->
     <div class="form-group">
       <label for="fullName">Nom Complet</label>
-      <input type="text" id="fullName" name="fullName" placeholder="Votre nom complet" >
+      <input type="text" id="fullName" formControlName="fullName" name="fullName" placeholder="Votre nom complet" >
     </div>
 
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="Votre adresse email" >
+      <input type="email" id="email" formControlName="email" name="email" placeholder="Votre adresse email" >
     </div>
 
     <div class="form-group">
       <label for="phone">Téléphone</label>
-      <input type="tel" id="phone" name="phone" placeholder="Votre numéro de téléphone" >
+      <input type="tel" id="phone" formControlName="phone" name="phone" placeholder="Votre numéro de téléphone" >
     </div>
 
     <!-- Job Preference -->
     <div class="form-group">
       <label for="jobType">Type de Poste</label>
-      <select id="jobType" name="jobType" >
+      <select id="jobType" formControlName="jobType" name="jobType" >
         <option value="emploi">Emploi</option>
         <option value="stage">Stage</option>
       </select>
     </div>
 
-  
+
 
     <!-- Attachments -->
     <div class="form-group">
       <label for="resume">CV (Format PDF)</label>
-      <input type="file" id="resume" name="resume" accept=".pdf" >
+      <input type="file" id="resume" formControlName="resume" name="resume" accept=".pdf" >
     </div>
 
     <div class="form-group">
-      <label for="coverLetter">Lettre de Motivation</label>
-      <textarea id="coverLetter" name="coverLetter" rows="5" placeholder="Votre lettre de motivation" ></textarea>
+      <label for="Lettre">Lettre de Motivation</label>
+      <input type="file" id="Lettre" formControlName="Lettre" name="Lettre" accept=".pdf" >
     </div>
 
     <!-- Submit Button -->

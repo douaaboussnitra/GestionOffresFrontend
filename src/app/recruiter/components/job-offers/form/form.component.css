@@ -35,7 +35,7 @@ textarea {
     border-radius: 4px;
     box-sizing: border-box;
     font-size: 14px;
-    color: #ffffff;
+    color: #541fb6;
 }
 
 textarea {
@@ -63,5 +63,5 @@ textarea {
     justify-content: center;
     align-items: center;
     width: 100%;
-    background-color: #ffffff;
+    background-color: hsl(0, 0%, 100%);
   }

@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './mix/layout/footer/footer.component';
 import { RecruiterMenuComponent } from './recruiter/layout/recruiter-menu/recruiter-menu.component';
 import { NavbarComponent } from './mix/layout/navbar/navbar.component';
+import { HomeComponent } from './mix/components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    RecruiterMenuComponent
+    RecruiterMenuComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
