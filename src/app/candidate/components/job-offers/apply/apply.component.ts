@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CandidateService } from 'src/app/candidate/candidate.service';
 import { jobOffersService } from 'src/app/mix/components/job-offers/service/job-offers.service';
 
 
@@ -11,11 +12,13 @@ import { jobOffersService } from 'src/app/mix/components/job-offers/service/job-
 })
 export class ApplyComponent implements OnInit {
   applyForm: FormGroup;
+  id : number|null=null;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private jobOffersService: jobOffersService
+    private  candidateService: CandidateService
+
     ) {
       this.applyForm = this.formBuilder.group({
         fullName: ['', Validators.required],
@@ -30,15 +33,37 @@ export class ApplyComponent implements OnInit {
 
   onSubmit(){
     console.log(this.applyForm.value);
-    this.jobOffersService.applyJob(this.applyForm.value).subscribe(
-      (response) => {
-        console.log(response);
-        this.router.navigate(['/job-offers/result']);
-        },
-        (error) => {
-          console.log(error);
+    if (this.applyForm.valid) { 
+        if (this.id) {
+          this.candidateService.updateCandidat(this.id,this.applyForm.value).subscribe( {
+            next:(response)  => {
+              console.log(response);
+              this.router.navigate(['/job-offers/result']);
+              },
+             error: (error) => {
+                console.log(error);
+                }
+      
           }
-          );
+      
+                );
+          
+        } else {
+          this.candidateService.createCandidat(this.applyForm.value).subscribe( {
+            next:(response)  => {
+              console.log(response);
+              this.router.navigate(['/job-offers/result']);
+              },
+             error: (error) => {
+                console.log(error);
+                }
+      
+          }
+      
+                );
+          
+        }
+          }
           }
           }
 

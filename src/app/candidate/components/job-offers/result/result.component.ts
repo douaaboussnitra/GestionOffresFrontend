@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { jobOffersService } from 'src/app/mix/components/job-offers/service/job-offers.service';
+import { CandidateService } from 'src/app/candidate/candidate.service';
 
 
 
@@ -11,9 +11,17 @@ import { jobOffersService } from 'src/app/mix/components/job-offers/service/job-
 export class ResultComponent implements OnInit {
   formData: any;
 
-  constructor(private formDataService: jobOffersService) {}
+  constructor(private candidateService: CandidateService ) {}
 
   ngOnInit() {
-    this.formData = this.formDataService.getData();
+    this.candidateService.getCandidat(1).subscribe(
+      (response) => {
+        this.formData = response;
+      },
+      (error) => {
+        console.error('Error fetching data:', error);
+      }
+    );
+    
   }
 }

@@ -8,6 +8,7 @@ import { FormComponent } from 'src/app/recruiter/components/job-offers/form/form
 import { ResultComponent } from 'src/app/candidate/components/job-offers/result/result.component';
 import { ListOffersComponent } from 'src/app/recruiter/components/job-offers/list-offers/list-offers.component';
 import { ApplicationsComponent } from 'src/app/recruiter/components/job-offers/applications/applications.component';
+import { ApplyComponent } from 'src/app/candidate/components/job-offers/apply/apply.component';
 
 
 
@@ -20,6 +21,7 @@ import { ApplicationsComponent } from 'src/app/recruiter/components/job-offers/a
     ResultComponent,
     ListOffersComponent,
     ApplicationsComponent,
+    ApplyComponent
     
   ],
   imports: [

@@ -32,7 +32,7 @@ export class FormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.jobPostForm.valid) {
-      this.jobOffersService.form_rec(this.jobPostForm.value).subscribe({
+      this.jobOffersService.createJoboffer(this.jobPostForm.value).subscribe({
         next: (response: any) => {
           console.log('Successful', response);
           this.router.navigate(['/job-offers/details']);

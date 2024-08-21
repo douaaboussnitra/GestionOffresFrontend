@@ -10,25 +10,19 @@ import { apiUrl } from 'src/app/environements/backend';
 export class jobOffersService {
 
   constructor(private http:HttpClient) {}
-
-  form_rec(form : { title:string, company:string , location:string, type:string , description:string, skills:string , salary:string, email:string}) : Observable <any> {
-    return this.http.post(`${apiUrl}/job-offers/form`, form);
+  getAllJoboffer() : Observable <any> {
+    return this.http.get(`${apiUrl}/joboffer`);
   }
-
-
-  applyJob(apply : { fullName:string, email:string , phone:string, jobType:string , resume:string, Lettre:string }) : Observable <any> {
-    return this.http.post(`${apiUrl}/job-offers/result`, apply);
-  }
-
-
-  private data: any = {};
-
-  setData(formData: any) {
-    this.data = formData;
-  }
-
-  getData() {
-    return this.data;
-
- }
- }
+  getJoboffer(id: number): Observable<any> {
+    return this.http.get(`${apiUrl}/joboffer/${id}`);
+    }
+    createJoboffer(joboffer: any): Observable<any> {
+      return this.http.post(`${apiUrl}/joboffer`, joboffer);
+      }
+      updateJoboffer(id: number, joboffer: any): Observable<any> {
+        return this.http.put(`${apiUrl}/joboffer/${id}`, joboffer);
+        }
+        deleteJoboffer(id: number): Observable<any> {
+          return this.http.delete(`${apiUrl}/joboffer/${id}`);
+          }
+    }
