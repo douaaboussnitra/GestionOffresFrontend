@@ -12,16 +12,17 @@ export class ResultComponent implements OnInit {
   formData: any;
 
   constructor(private candidateService: CandidateService ) {}
-
   ngOnInit() {
-    this.candidateService.getCandidat(1).subscribe(
-      (response) => {
+    this.candidateService.getCandidat(1).subscribe( {
+      next : (response) => {
         this.formData = response;
       },
-      (error) => {
+       error : (error) => {
         console.error('Error fetching data:', error);
       }
+    }
     );
-    
+
   }
 }
+

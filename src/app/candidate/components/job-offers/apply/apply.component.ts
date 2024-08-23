@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CandidateService } from 'src/app/candidate/candidate.service';
-import { jobOffersService } from 'src/app/mix/components/job-offers/service/job-offers.service';
-
 
 @Component({
   selector: 'app-apply-form',
@@ -11,7 +9,7 @@ import { jobOffersService } from 'src/app/mix/components/job-offers/service/job-
   styleUrls: ['./apply.component.css']
 })
 export class ApplyComponent implements OnInit {
-  applyForm: FormGroup;
+  applyForm!: FormGroup;
   id : number|null=null;
 
   constructor(
@@ -21,19 +19,24 @@ export class ApplyComponent implements OnInit {
 
     ) {
       this.applyForm = this.formBuilder.group({
-        fullName: ['', Validators.required],
+        fullname: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
         jobType: ['', Validators.required],
         resume: ['', Validators.required],
-        Lettre: ['', Validators.required]
+        Lettre: ['', Validators.required],
+        experience: ['', Validators.required],
+        roleId : ['3', Validators.required]
         });
         }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // 
+  }
 
   onSubmit(){
+    console.log('Form Submitted');
     console.log(this.applyForm.value);
-    if (this.applyForm.valid) { 
+    if (this.applyForm.valid) {
         if (this.id) {
           this.candidateService.updateCandidat(this.id,this.applyForm.value).subscribe( {
             next:(response)  => {
@@ -43,11 +46,11 @@ export class ApplyComponent implements OnInit {
              error: (error) => {
                 console.log(error);
                 }
-      
+
           }
-      
+
                 );
-          
+
         } else {
           this.candidateService.createCandidat(this.applyForm.value).subscribe( {
             next:(response)  => {
@@ -57,11 +60,11 @@ export class ApplyComponent implements OnInit {
              error: (error) => {
                 console.log(error);
                 }
-      
+
           }
-      
+
                 );
-          
+
         }
           }
           }

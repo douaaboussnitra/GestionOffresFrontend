@@ -1,10 +1,10 @@
 <section class="apply-form-section">
   <h1>Postuler à un Offre d'Emploi ou Stage</h1>
-  <form class="apply-form" [formGroup]="applyForm">
+  <form class="apply-form" [formGroup]="applyForm" (ngSubmit)="onSubmit()">
     <!-- Personal Information -->
     <div class="form-group">
-      <label for="fullName">Nom Complet</label>
-      <input type="text" id="fullName" formControlName="fullName" name="fullName" placeholder="Votre nom complet" >
+      <label for="fullname">Nom Complet</label>
+      <input type="text" id="fullname" formControlName="fullname" name="fullname" placeholder="Votre nom complet" >
     </div>
 
     <div class="form-group">
@@ -15,6 +15,11 @@
     <div class="form-group">
       <label for="phone">Téléphone</label>
       <input type="tel" id="phone" formControlName="phone" name="phone" placeholder="Votre numéro de téléphone" >
+    </div>
+
+    <div class="form-group">
+      <label for="experience">experience</label>
+      <input type="text" id="experience" formControlName="experience" name="experience" placeholder="Votre experience" >
     </div>
 
     <!-- Job Preference -->
@@ -40,7 +45,7 @@
     </div>
 
     <!-- Submit Button -->
-    <button (click)="onSubmit()" type="button"  class="submit-button" >Soumettre la Candidature</button>
+    <button  type="submit"  class="submit-button" >Soumettre la Candidature</button>
 
   </form>
 </section>

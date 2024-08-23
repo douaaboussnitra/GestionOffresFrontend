@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/mix/components/auth/service/auth.service';
+import { Candidat } from 'src/app/models/condidat.model';
 
 @Component({
   selector: 'app-register',
@@ -11,46 +11,56 @@ import { AuthService } from 'src/app/mix/components/auth/service/auth.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  submitted: boolean = false; // Flag to track form submission
+  submitted: boolean = false;
   passwordMatch: boolean = false;
 
-  constructor(private fb: FormBuilder, private aut: AuthService, private route: Router) {
-    this.registerForm = this.fb.group(
-      {
-        username: ['', [Validators.required]],
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required]],
-        password_conf: ['', [Validators.required]],
-      }
-    );
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.registerForm = this.fb.group({
+      username: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+      password_conf: ['', [Validators.required]]
+    });
   }
+
+  ngOnInit(): void {}
 
   passwordMatchChange(pass: string, confirmPass: string): void {
     this.passwordMatch = !(pass === confirmPass);
   }
 
-  ngOnInit(): void {}
-
   onSubmit(): void {
-    this.submitted = true; // Set the flag to true on form submission
-    // copy the syntax from register rec for subscribe
+    this.submitted = true;
+
     if (this.registerForm.valid) {
-      this.aut.register(this.registerForm.value).subscribe({
-        next: (response)=> {
-          console.log(response);
-          this.aut.login({email: this.registerForm.value.email, password: this.registerForm.value.password}).subscribe(res => {
-            this.route.navigate(['/job-offers/offers']);
-          })
+      const { email, password } = this.registerForm.value;
 
+      // Register the user
+      this.authService.register(this.registerForm.value).subscribe({
+        next: (response) => {
+          console.log('Registration successful:', response);
+
+          // Automatically login after successful registration
+          this.authService.login({ email, password }).subscribe({
+            next: (loginResponse) => {
+              console.log('Login successful:', loginResponse);
+              this.router.navigate(['/job-offers/offers']);
+            },
+            error: (loginError) => {
+              console.error('Login failed:', loginError);
+            }
+          });
         },
-        error: (error)=> {
-          console.log("error", error);
+        error: (error) => {
+          console.error('Registration failed:', error);
         }
-      }
-
-      );
+      });
     } else {
-      console.log("invalid form");
+      console.log('Invalid form');
     }
   }
 }

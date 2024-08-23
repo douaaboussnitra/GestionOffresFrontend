@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { apiUrl } from 'src/app/environements/backend';
+import { Candidat } from '../models/condidat.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +10,11 @@ import { apiUrl } from 'src/app/environements/backend';
 export class CandidateService  {
 
   constructor(private http:HttpClient) {}
-  getAllCandidat() : Observable <any> {
-    return this.http.get(`${apiUrl}/candidat`);
+  getAllCandidat() : Observable <Candidat[]> {
+    return this.http.get<Candidat[]>(`${apiUrl}/candidat`);
   }
-  getCandidat(id: number): Observable<any> {
-    return this.http.get(`${apiUrl}/candidat/${id}`);
+  getCandidat(id: number): Observable<Candidat> {
+    return this.http.get<Candidat>(`${apiUrl}/candidat/${id}`);
     }
     createCandidat(candidat: any): Observable<any> {
       return this.http.post(`${apiUrl}/candidat`, candidat);

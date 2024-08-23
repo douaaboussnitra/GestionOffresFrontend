@@ -31,6 +31,7 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
+    console.log(this.jobPostForm.value);
     if (this.jobPostForm.valid) {
       this.jobOffersService.createJoboffer(this.jobPostForm.value).subscribe({
         next: (response: any) => {
