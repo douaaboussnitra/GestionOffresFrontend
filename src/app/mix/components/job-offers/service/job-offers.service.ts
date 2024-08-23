@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { apiUrl } from 'src/app/environements/backend';
+import { JobOffer } from 'src/app/models/JobOffers.model';
 
 
 @Injectable({
@@ -10,19 +11,19 @@ import { apiUrl } from 'src/app/environements/backend';
 export class jobOffersService {
 
   constructor(private http:HttpClient) {}
-  getAllJoboffer() : Observable <any> {
-    return this.http.get(`${apiUrl}/joboffer`);
+  getAllJoboffer() : Observable <JobOffer[]> {
+    return this.http.get<JobOffer[]>(`${apiUrl}/joboffer`);
   }
-  getJoboffer(id: number): Observable<any> {
-    return this.http.get(`${apiUrl}/joboffer/${id}`);
+  getJoboffer(id: number): Observable<JobOffer> {
+    return this.http.get<JobOffer>(`${apiUrl}/joboffer/${id}`);
     }
-    createJoboffer(joboffer: any): Observable<any> {
-      return this.http.post(`${apiUrl}/joboffer`, joboffer);
+    createJoboffer(joboffer: JobOffer): Observable<boolean> {
+      return this.http.post<boolean>(`${apiUrl}/joboffer`, joboffer);
       }
-      updateJoboffer(id: number, joboffer: any): Observable<any> {
-        return this.http.put(`${apiUrl}/joboffer/${id}`, joboffer);
+      updateJoboffer(id: number, joboffer: JobOffer): Observable<boolean> {
+        return this.http.put<boolean>(`${apiUrl}/joboffer/${id}`, joboffer);
         }
-        deleteJoboffer(id: number): Observable<any> {
-          return this.http.delete(`${apiUrl}/joboffer/${id}`);
+        deleteJoboffer(id: number): Observable<boolean> {
+          return this.http.delete<boolean>(`${apiUrl}/joboffer/${id}`);
           }
     }

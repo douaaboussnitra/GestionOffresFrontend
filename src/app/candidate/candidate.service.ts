@@ -16,14 +16,14 @@ export class CandidateService  {
   getCandidat(id: number): Observable<Candidat> {
     return this.http.get<Candidat>(`${apiUrl}/candidat/${id}`);
     }
-    createCandidat(candidat: any): Observable<any> {
-      return this.http.post(`${apiUrl}/candidat`, candidat);
+    createCandidat(candidat: FormData): Observable<boolean> {
+      return this.http.post<boolean>(`${apiUrl}/candidat`, candidat);
       }
-      updateCandidat(id: number, candidat: any): Observable<any> {
-        return this.http.put(`${apiUrl}/candidat/${id}`, candidat);
+      updateCandidat(id: number, candidat: FormData): Observable<boolean> {
+        return this.http.put<boolean>(`${apiUrl}/candidat/${id}`, candidat);
         }
-        deleteCandidat(id: number): Observable<any> {
-          return this.http.delete(`${apiUrl}/candidat/${id}`);
+        deleteCandidat(id: number): Observable<boolean> {
+          return this.http.delete<boolean>(`${apiUrl}/candidat/${id}`);
           }
           }
 

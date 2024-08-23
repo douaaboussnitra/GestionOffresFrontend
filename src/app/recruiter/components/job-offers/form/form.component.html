@@ -1,65 +1,69 @@
 <div class="formGroup" [formGroup]="jobPostForm">
-  <div class="form-container">
-    <h1>Publier une Offre d'Emploi ou de Stage</h1>
-    <form (submit)="onSubmit()">
-        <!-- Job Title -->
-        <div class="form-group">
-            <label for="title">Titre du poste</label>
-            <input type="text" id="title" formControlName="title" placeholder="Ex: Développeur Web" required>
-        </div>
-
-        <!-- Company Name -->
-        <div class="form-group">
-            <label for="company">Nom de l'entreprise</label>
-            <input type="text" id="company" formControlName="company" placeholder="Ex: OpenAI" required>
-        </div>
-
-        <!-- Location -->
-        <div class="form-group">
-            <label for="location">Lieu</label>
-            <input type="text" id="location" formControlName="location" placeholder="Ex: Paris, France" required>
-        </div>
-
-        <!-- Job Type -->
-        <div class="form-group">
-            <label for="type">Type de contrat</label>
-            <select id="type" formControlName="type" required>
-                <option value="">Sélectionnez</option>
-                <option value="fulltime">Temps plein</option>
-                <option value="parttime">Temps partiel</option>
-                <option value="internship">Stage</option>
-                <option value="freelance">Freelance</option>
-            </select>
-        </div>
-
-        <!-- Job Description -->
-        <div class="form-group">
-            <label for="description">Description du poste</label>
-            <textarea id="description" formControlName="description" rows="5" placeholder="Détails sur le poste..." required></textarea>
-        </div>
-
-        <!-- Required Skills -->
-        <div class="form-group">
-            <label for="skills">Compétences requises</label>
-            <input type="text" id="skills" formControlName="skills" placeholder="Ex: JavaScript, React, Node.js" required>
-        </div>
-
-        <!-- Salary -->
-        <div class="form-group">
-            <label for="salary">Salaire (facultatif)</label>
-            <input type="text" id="salary" formControlName="salary" placeholder="Ex: 50,000 € / an">
-        </div>
-
-        <!-- Contact Email -->
-        <div class="form-group">
-            <label for="email">Email de contact</label>
-            <input type="email" id="email" formControlName="email" placeholder="contact@entreprise.com" required>
-        </div>
-
-        <!-- Submit Button -->
-        <div class="form-group">
-            <button type="submit" class="submit-button">Publier l'offre</button>
-        </div>
-    </form>
+    <div class="form-container">
+      <h1>Publish a Job or Internship Offer</h1>
+      <form (submit)="onSubmit()">
+          <!-- Job Title -->
+          <div class="form-group">
+              <label for="title">Job Title</label>
+              <input type="text" id="title" formControlName="title" placeholder="E.g., Web Developer" required>
+          </div>
+  
+          <!-- Company Name -->
+          <div class="form-group">
+              <label for="companyName">Company Name</label>
+              <input type="text" id="companyName" formControlName="companyName" placeholder="E.g., OpenAI" required>
+          </div>
+  
+          <!-- Location -->
+          <div class="form-group">
+              <label for="location">Location</label>
+              <input type="text" id="location" formControlName="location" placeholder="E.g., Paris, France" required>
+          </div>
+  
+          <!-- Job Type -->
+          <div class="form-group">
+              <label for="contractType">Contract Type</label>
+              <select id="contractType" formControlName="contractType" required>
+                  <option value="">Select</option>
+                  <option value="fulltime">Full-time</option>
+                  <option value="parttime">Part-time</option>
+                  <option value="internship">Internship</option>
+                  <option value="freelance">Freelance</option>
+              </select>
+          </div>
+  
+          <!-- Job Description -->
+          <div class="form-group">
+              <label for="description">Job Description</label>
+              <textarea id="description" formControlName="description" rows="5" placeholder="Details about the job..." required></textarea>
+          </div>
+  
+          <!-- Required Skills -->
+          <div class="form-group">
+              <label for="skills">Required Skills</label>
+              <input type="text" id="skills" formControlName="skills" placeholder="E.g., JavaScript, React, Node.js" required>
+          </div>
+    <!-- Required hierarchyLevel -->
+    <div class="form-group">
+        <label for="hierarchyLevel">Company hierarchy Level </label>
+        <input type="text" id="hierarchyLevel" formControlName="hierarchyLevel" placeholder="E.g., JavaScript, React, Node.js" required>
+    </div>
+          <!-- Salary -->
+          <div class="form-group">
+              <label for="salary">Salary (optional)</label>
+              <input type="text" id="salary" formControlName="salary" placeholder="E.g., 50,000 € / year">
+          </div>
+  
+          <!-- Contact Email -->
+          <div class="form-group">
+              <label for="email">Contact Email</label>
+              <input type="email" id="email" formControlName="email" placeholder="contact@company.com" required>
+          </div>
+  
+          <!-- Submit Button -->
+          <div class="form-group">
+              <button type="submit" class="submit-button">Publish Offer</button>
+          </div>
+      </form>
+    </div>
   </div>
-</div>

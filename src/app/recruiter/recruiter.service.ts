@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { apiUrl } from 'src/app/environements/backend';
+import { Recruiter } from '../models/recruiter.model';
 
 
 @Injectable({
@@ -10,19 +11,19 @@ import { apiUrl } from 'src/app/environements/backend';
 export class RecruiterService {
 
   constructor(private http:HttpClient) { }
-  getRecruiter(): Observable<any> {
-    return this.http.get(`${apiUrl}/recruiter`);
+  getRecruiter(): Observable<Recruiter[]> {
+    return this.http.get<Recruiter[]>(`${apiUrl}/recruiter`);
     }
-    getRecruiterById(id: number): Observable<any> {
-      return this.http.get(`${apiUrl}/recruiter/${id}`);
+    getRecruiterById(id: number): Observable<Recruiter> {
+      return this.http.get<Recruiter>(`${apiUrl}/recruiter/${id}`);
       }
-      createRecruiter(recruiter: any): Observable<any> {
-        return this.http.post(`${apiUrl}/recruiter`, recruiter);
+      createRecruiter(recruiter: Recruiter): Observable<boolean> {
+        return this.http.post<boolean>(`${apiUrl}/recruiter`, recruiter);
         }
-        updateRecruiter(id: number, recruiter: any): Observable<any> {
-          return this.http.put(`${apiUrl}/recruiter/${id}`, recruiter);
+        updateRecruiter(id: number, recruiter: Recruiter): Observable<boolean> {
+          return this.http.put<boolean>(`${apiUrl}/recruiter/${id}`, recruiter);
           }
-          deleteRecruiter(id: number): Observable<any> {
-            return this.http.delete(`${apiUrl}/recruiter/${id}`);
+          deleteRecruiter(id: number): Observable<boolean> {
+            return this.http.delete<boolean>(`${apiUrl}/recruiter/${id}`);
             }
       }

@@ -13,3 +13,55 @@
     background-color: #cbd5e0;
     border-radius: 4px;
 }
+
+.form {
+    display: grid;
+    place-content: center;
+  }
+  
+  #checkedMe {
+      outline: none !important;
+      cursor: pointer;
+  }
+  
+  #checkedMe[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
+  }
+  
+  #checkedMe[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    transform: scale(0);
+    transform-origin: bottom left;
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em green; /* Set check color to green */
+    background-color: transparent; /* Ensure background color is transparent */
+  }
+  
+  #checkedMe[type="checkbox"]:checked::before {
+    transform: scale(1);
+    background-color: green; /* Set check mark color to green */
+  }
+  
+  #checkedMe[type="checkbox"]:focus {
+    outline: max(2px, 0.15em) solid currentColor;
+    outline-offset: max(2px, 0.15em);
+  }
+  
+  #checkedMe[type="checkbox"]:disabled {
+    color: #959495;
+    cursor: not-allowed;
+  }

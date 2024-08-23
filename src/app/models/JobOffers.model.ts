@@ -2,10 +2,12 @@ export interface JobOffer {
   id:                  number;
   title:               string;
   description:         string;
-  requirement:         string;
+  requirements:        string;
   location:            string;
   salary:              string;
+  companyName:         string;   // Added companyName field
   postedBy:            number;
-  type_de_contrat:     string;
-  niveau_hierarchique: string;
+  contractType:        string;
+  hierarchyLevel:      string;
+  email:               string;
 }

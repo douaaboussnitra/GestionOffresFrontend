@@ -23,7 +23,8 @@ submitted: boolean = false;
     if(this.loginForm.valid) {
         this.aus.login(this.loginForm.value).subscribe({next: (Response) => {
           console.log('successful', Response);
-          this.router.navigate(['/job-offers/details']);
+           this.router.navigate(['/job-offers/details']);
+          console.log(this.aus.decodeToken(Response.token))
         },
       error: (error)=> {
         console.log('error' , error); }
@@ -31,6 +32,7 @@ submitted: boolean = false;
      }
     else
     {console.log('invalid form');}
+    
 
   }
 

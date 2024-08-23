@@ -24,7 +24,7 @@
 				  </div>
                 <div class="login__field">
                     <label for="password" class="password">Password confirmation</label>
-					<input type="email" formControlName="password_conf" class="login__input" (change)="passwordMatchChange(pass.value, confirm.value)" #confirm>
+					<input type="password" formControlName="password_conf" class="login__input" (change)="passwordMatchChange(pass.value, confirm.value)" #confirm>
 				</div>
 				<div *ngIf="passwordMatch">
 					Passwords do not match!

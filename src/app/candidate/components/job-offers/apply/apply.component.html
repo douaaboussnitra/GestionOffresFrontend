@@ -4,50 +4,42 @@
     <!-- Personal Information -->
     <div class="form-group">
       <label for="fullname">Nom Complet</label>
-      <input type="text" id="fullname" formControlName="fullname" name="fullname" placeholder="Votre nom complet" >
+      <input type="text" id="fullname" formControlName="fullname" name="fullname"  >
     </div>
 
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" id="email" formControlName="email" name="email" placeholder="Votre adresse email" >
+      <input type="email" id="email" formControlName="email" name="email" >
     </div>
 
     <div class="form-group">
       <label for="phone">Téléphone</label>
-      <input type="tel" id="phone" formControlName="phone" name="phone" placeholder="Votre numéro de téléphone" >
+      <input type="tel" id="phone" formControlName="phone" name="phone" >
     </div>
 
     <div class="form-group">
-      <label for="experience">experience</label>
-      <input type="text" id="experience" formControlName="experience" name="experience" placeholder="Votre experience" >
+      <label for="experience">Experience</label>
+      <input type="text" id="experience" formControlName="experience" name="experience"  >
     </div>
 
     <!-- Job Preference -->
     <div class="form-group">
       <label for="jobType">Type de Poste</label>
-      <select id="jobType" formControlName="jobType" name="jobType" >
-        <option value="emploi">Emploi</option>
-        <option value="stage">Stage</option>
-      </select>
+      <input type="text" id="jobType" formControlName="jobType" name="jobType"  >
     </div>
-
-
 
     <!-- Attachments -->
     <div class="form-group">
       <label for="resume">CV (Format PDF)</label>
-      <input type="file" id="resume" formControlName="resume" name="resume" accept=".pdf" >
+      <input type="file" id="resume" (change)="onFileChange($event,'cv')"  formControlName="resume" name="resume" accept=".pdf">
     </div>
 
     <div class="form-group">
       <label for="Lettre">Lettre de Motivation</label>
-      <input type="file" id="Lettre" formControlName="Lettre" name="Lettre" accept=".pdf" >
+      <input type="file" (change)="onFileChange($event,'lettre')"  id="Lettre" formControlName="Lettre" name="Lettre" accept=".pdf">
     </div>
 
     <!-- Submit Button -->
-    <button  type="submit"  class="submit-button" >Soumettre la Candidature</button>
-
+    <button type="submit" class="submit-button">Soumettre la Candidature</button>
   </form>
 </section>
-
-
