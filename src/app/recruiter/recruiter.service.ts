@@ -17,13 +17,13 @@ export class RecruiterService {
     getRecruiterById(id: number): Observable<Recruiter> {
       return this.http.get<Recruiter>(`${apiUrl}/recruiter/${id}`);
       }
-      createRecruiter(recruiter: Recruiter): Observable<boolean> {
-        return this.http.post<boolean>(`${apiUrl}/recruiter`, recruiter);
+      createRecruiter(recruiter: Recruiter): Observable<Recruiter> {
+        return this.http.post<Recruiter>(`${apiUrl}/recruiter`, recruiter);
         }
-        updateRecruiter(id: number, recruiter: Recruiter): Observable<boolean> {
-          return this.http.put<boolean>(`${apiUrl}/recruiter/${id}`, recruiter);
+        updateRecruiter(id: number, recruiter: Recruiter): Observable<Recruiter> {
+          return this.http.put<Recruiter>(`${apiUrl}/recruiter/${id}`, recruiter);
           }
-          deleteRecruiter(id: number): Observable<boolean> {
-            return this.http.delete<boolean>(`${apiUrl}/recruiter/${id}`);
+          deleteRecruiter(id: number): Observable<Recruiter> {
+            return this.http.delete<Recruiter>(`${apiUrl}/recruiter/${id}`);
             }
       }

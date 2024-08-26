@@ -1,8 +1,9 @@
+import { Role } from './../../../../models/role.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { apiUrl } from 'src/app/environements/backend';
-import * as jwt_decode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +17,7 @@ export class AuthService {
 
   decodeToken(token: string): any {
     try {
-      const decodedToken = jwt_decode.jwtDecode(token);
+      const decodedToken = jwtDecode(token);
       return decodedToken;
     } catch (error) {
       console.error("Invalid token provided:", error);
@@ -24,11 +25,12 @@ export class AuthService {
     }
   }
 
-  register(rej: { username: string, email: string, password: string, password_conf: string }): Observable<any> {
+  register(rej: { username: string, email: string, password: string, password_conf: string , role:number }): Observable<any> {
     return this.http.post(`${apiUrl}/auth/register`, rej);
   }
 
-  register_rec(register_rec: { fullName: string, email: string, phone: string, password: string, confirmPassword: string }): Observable<any> {
-    return this.http.post(`${apiUrl}/auth/register-recruiter`, register_rec);
-  }
+
+  /* registerUser(name:string , role :number): Observable<any> {
+    return this.http.post(`${apiUrl}/auth/register`,{name,role});
+  } */
 }
