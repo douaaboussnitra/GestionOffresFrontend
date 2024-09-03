@@ -1,15 +1,21 @@
-import { Role } from './../../../../models/role.model';
+// auth.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { apiUrl } from 'src/app/environements/backend';
 import { jwtDecode } from 'jwt-decode';
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private decodedTokenSubject = new BehaviorSubject<any>(null);
+  user$ = this.decodedTokenSubject.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.loadUserFromToken(); // Load user state on service initialization
+  }
 
   login(log: { email: string, password: string }): Observable<any> {
     return this.http.post(`${apiUrl}/auth/login`, log);
@@ -17,20 +23,34 @@ export class AuthService {
 
   decodeToken(token: string): any {
     try {
-      const decodedToken = jwtDecode(token);
-      return decodedToken;
+      const decodedToken: any = jwtDecode(token);
+      this.decodedTokenSubject.next(decodedToken);
+      console.log(decodedToken);
+      localStorage.setItem('USER', token);
     } catch (error) {
-      console.error("Invalid token provided:", error);
+      console.error('Invalid token provided:', error);
       return null;
     }
   }
 
-  register(rej: { username: string, email: string, password: string, password_conf: string , role:number }): Observable<any> {
+  logout(): void {
+    this.decodedTokenSubject.next(null);
+    localStorage.removeItem('USER');
+  }
+
+  register(rej: { username: string, email: string, password: string, password_conf: string, role: number }): Observable<any> {
     return this.http.post(`${apiUrl}/auth/register`, rej);
   }
 
+  private loadUserFromToken(): void {
+    const token = localStorage.getItem('USER');
+    if (token) {
+      this.decodeToken(token);
+    }
+  }
 
-  /* registerUser(name:string , role :number): Observable<any> {
-    return this.http.post(`${apiUrl}/auth/register`,{name,role});
-  } */
+  // New method to get the current decoded token
+  getDecodedToken(): any {
+    return this.decodedTokenSubject.value;
+  }
 }

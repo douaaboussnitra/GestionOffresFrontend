@@ -12,14 +12,14 @@ const routes: Routes = [
     {
       path: '',
       children:[
-        { path: 'offers', component : offersComponent},
-        { path: 'details', component : DetailsComponent},
-        { path: 'form', component : FormComponent},
-        { path: 'apply', component : ApplyComponent},
-        { path: 'result', component : ResultComponent},
-        { path: 'liste-offers', component :ListOffersComponent },
-        { path: 'applications', component :ApplicationsComponent },
-        
+      { path: 'offers', component: offersComponent },
+      { path: 'details/:id', component: DetailsComponent },
+      { path: 'form', component: FormComponent },
+      { path: 'form/:id', component: FormComponent },
+      { path: 'apply/:id', component: ApplyComponent },
+      { path: 'result/:id', component: ResultComponent },
+      { path: 'liste-offers', component: ListOffersComponent },
+      { path: 'applications/:id', component: ApplicationsComponent }
       ]
       }
   ];

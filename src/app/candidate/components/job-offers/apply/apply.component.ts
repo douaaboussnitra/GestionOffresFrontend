@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { CandidateService } from 'src/app/candidate/candidate.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/mix/components/auth/service/auth.service';
 import { ApplicationService } from 'src/app/recruiter/components/job-offers/applications/application.service';
 
 @Component({
@@ -11,38 +11,41 @@ import { ApplicationService } from 'src/app/recruiter/components/job-offers/appl
 })
 export class ApplyComponent implements OnInit {
   applyForm!: FormGroup;
-  id: number | null = null;
-  fileCv:any;
-  fileMotiva:any;
+  idJob: number | null = null;
+  fileCv: any;
+  fileMotiva: any;
+  idCandidat: any;
+
   constructor(
+    private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private router: Router,
-    private applicationService: ApplicationService
+    private applicationService: ApplicationService,
+    private aut:AuthService
   ) {}
 
   ngOnInit(): void {
-    
-
+    this.idCandidat = localStorage.getItem('CANDIDAT_ID')
+    this.route.paramMap.subscribe((params: any) => {
+      console.log("1 in")
+      this.idJob = params.get('id');
+    });
     this.applyForm = this.formBuilder.group({
-        fullname: [{ value: '', disabled: true }, Validators.required],
-        email: [{ value: '', disabled: true }, [Validators.required, Validators.email]],
-        phone: [{ value: '', disabled: true }, [Validators.required, Validators.pattern(/^\d{10}$/)]],
-        jobType: [{ value: '', disabled: true }, Validators.required],
-        resume: [null, Validators.required],
-        Lettre: [null, Validators.required],
-        experience: [{ value: '', disabled: true }, Validators.required],
-        roleId: ['3', Validators.required]
-      });
-      
-
+      fullName: ['', Validators.required], // Changed from 'fullname' to 'fullName'
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      jobType: ['', Validators.required],
+      resume: [null, Validators.required],
+      Lettre: [null, Validators.required],
+      experience: ['', Validators.required],
+      roleId: ['3', Validators.required]
+    });
   }
 
   onSubmit(): void {
-    console.log('Form Submitted');
-    console.log(this.applyForm.value);
     if (this.applyForm.valid) {
       const formData = new FormData();
-      formData.append('fullname', this.applyForm.get('fullname')?.value);
+      formData.append('fullName', this.applyForm.get('fullName')?.value);
       formData.append('email', this.applyForm.get('email')?.value);
       formData.append('phone', this.applyForm.get('phone')?.value);
       formData.append('experience', this.applyForm.get('experience')?.value);
@@ -50,43 +53,29 @@ export class ApplyComponent implements OnInit {
       formData.append('filecv', this.fileCv);
       formData.append('filemotiva', this.fileMotiva);
       formData.append('roleId', this.applyForm.get('roleId')?.value);
+      formData.append('candidateId', this.idCandidat);
+      formData.append('jobOfferId', `${this.idJob}`);
 
-
-      if (this.id) {
-        this.applicationService.updateApplication(this.id, formData).subscribe({
-          next: (response) => {
-            console.log(response);
-            this.router.navigate(['/job-offers/result']);
-          },
-          error: (error) => {
-            console.log(error);
-          }
-        });
-      } else {
-        this.applicationService.createApplication(formData).subscribe({
-          next: (response) => {
-            console.log(response);
-            this.router.navigate(['/job-offers/result']);
-          },
-          error: (error) => {
-            console.log(error);
-          }
-        });
-      }
+      this.applicationService.createApplication(formData).subscribe({
+        next: (response: any) => {
+          this.router.navigate(['/job-offers/result', response.id]);
+        },
+        error: (error) => {
+          console.error('Error submitting application:', error);
+        }
+      });
     }
   }
-
-
 
   onFileChange(event: Event, type: string) {
     const input = event.target as HTMLInputElement;
     if (input.files?.length) {
       const file = input.files[0];
-       if(type == 'cv'){
+      if (type === 'cv') {
         this.fileCv = file;
-       }else{
-        this.fileMotiva = file
-       }
+      } else {
+        this.fileMotiva = file;
+      }
     }
   }
 }

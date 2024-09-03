@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { jobOffersService } from 'src/app/mix/components/job-offers/service/job-offers.service';
 
 @Component({
@@ -10,11 +10,13 @@ import { jobOffersService } from 'src/app/mix/components/job-offers/service/job-
 })
 export class FormComponent implements OnInit {
   jobPostForm: FormGroup;
+  idJob: string | null = null;
 
   constructor(
     private fb: FormBuilder,
     private jobOffersService: jobOffersService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.jobPostForm = this.fb.group({
       title: ['', [Validators.required]],
@@ -23,32 +25,75 @@ export class FormComponent implements OnInit {
       contractType: ['', [Validators.required]],
       description: ['', [Validators.required]],
       hierarchyLevel: ['', [Validators.required]],
-      skills: ['', [Validators.required]], // Add skills input
+      skills: ['', [Validators.required]],
       salary: [''],
       email: ['', [Validators.required, Validators.email]],
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      this.idJob = params.get('id');
+
+      if (this.idJob) {
+        this.jobOffersService.getJoboffer(this.idJob).subscribe({
+          next: (data) => {
+            this.jobPostForm.patchValue({
+              title: data.title ?? '',
+              companyName: data.companyName ?? '',
+              location: data.location ?? '',
+              contractType: data.contractType ?? '',
+              description: data.description ?? '',
+              hierarchyLevel: data.hierarchyLevel ?? '',
+              skills: data.skills ?? '',
+              salary: data.salary ?? '',
+              email: data.email ?? '',
+            });
+          },
+          error: (error) => {
+            console.error('Error fetching job offer:', error);
+          },
+        });
+      }
+    });
+  }
 
   onSubmit(): void {
-    const skillIds = this.jobPostForm.value.skills.split(',').map((id:string) => parseInt(id.trim()));
-
     if (this.jobPostForm.valid) {
-      this.jobOffersService.createJoboffer({
-        ...this.jobPostForm.value,
-        skillIds
-      }).subscribe({
-        next: (response: any) => {
-          console.log('Successful', response);
-          this.router.navigate(['/job-offers/details']);
-        },
-        error: (error: any) => {
-          console.log('Error', error);
+      console.log(this.jobPostForm)
+      if (this.idJob) {
+        // Call the updateJoboffer service method
+        this.jobOffersService.updateJoboffer(this.idJob, this.jobPostForm.value).subscribe({
+          next: (response: any) => {
+            console.log('Update successful', response);
+            // Navigate to the job offer details page after successful update
+            this.router.navigate(['/job-offers/details', response.id]);
+          },
+          error: (error: any) => {
+            console.error('Error updating job offer', error);
+          },
+        });
+      } else {
+        // Call the createJoboffer service method
+        this.jobOffersService.createJoboffer(this.jobPostForm.value).subscribe({
+          next: (response: any) => {
+            console.log('Creation successful', response);
+            // Navigate to the job offer details page after successful creation
+            this.router.navigate(['/job-offers/details', response.id]);
+          },
+          error: (error: any) => {
+            console.error('Error creating job offer', error);
+          },
+        });
+      }
+    } {
+      console.log('Invalid form', this.jobPostForm);
+      Object.keys(this.jobPostForm.controls).forEach(key => {
+        const controlErrors = this.jobPostForm.get(key)?.errors;
+        if (controlErrors != null) {
+          console.log(`Control ${key} has errors:`, controlErrors);
         }
       });
-    } else {
-      console.log('Invalid form');
     }
   }
 }

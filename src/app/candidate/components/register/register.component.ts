@@ -1,10 +1,10 @@
-import { CandidateService } from 'src/app/candidate/candidate.service';
+// register.component.ts
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError, forkJoin, of, switchMap } from 'rxjs';
 import { AuthService } from 'src/app/mix/components/auth/service/auth.service';
-import { Candidat } from 'src/app/models/condidat.model';
+import { CandidateService } from 'src/app/candidate/candidate.service';
 
 @Component({
   selector: 'app-register',
@@ -20,8 +20,7 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private candidateservice: CandidateService
-
+    private candidateService: CandidateService
   ) {
     this.registerForm = this.fb.group({
       username: ['', [Validators.required]],
@@ -41,59 +40,39 @@ export class RegisterComponent implements OnInit {
     this.submitted = true;
 
     if (this.registerForm.valid) {
-      const { email, password , username } = this.registerForm.value;
+      const { email, password, username } = this.registerForm.value;
+
       forkJoin({
-        userRegistration: this.authService.register({...this.registerForm.value,role:2}),
-        candidatRegistration: this.candidateservice.createCandidat({fullname:username,...this.registerForm.value})
+        userRegistration: this.authService.register({ ...this.registerForm.value, role: 2 }),
+        candidatRegistration: this.candidateService.createCandidat({ fullname: username, ...this.registerForm.value })
       })
-      .pipe(
-        switchMap((responses) => {
-           console.log('User registration successful:', responses.userRegistration);
-          console.log('Candidate registration successful:', responses.candidatRegistration);
-          // Automatically login after successful registrations
-          return this.authService.login({ email, password })
-        }),
-        catchError((error) => {
-          console.error('An error occurred during registration:', error);
-          return of(null);
-        })
-      )
-      .subscribe({
-        next: (loginResponse) => {
-          if (loginResponse) {
-            console.log('Login successful:', loginResponse);
-            this.router.navigate(['/job-offers/offers']);
-          }
-        },
-        error: (loginError) => {
-          console.error('Login failed:', loginError);
-        }
-      });
+        .pipe(
+          switchMap((responses) => {
+            console.log('User registration successful:', responses.userRegistration);
+            console.log('Candidate registration successful:', responses.candidatRegistration);
 
-      // Register the user
-      /* this.authService.register(this.registerForm.value).subscribe({
-        next: (response) => {
-          console.log('Registration successful:', response);
-
-          // Automatically login after successful registration
-          this.authService.login({ email, password }).subscribe({
-            next: (loginResponse) => {
+            // Automatically login after successful registrations
+            return this.authService.login({ email, password });
+          }),
+          catchError((error) => {
+            console.error('An error occurred during registration:', error);
+            return of(null);
+          })
+        )
+        .subscribe({
+          next: (loginResponse) => {
+            if (loginResponse) {
+              this.authService.decodeToken(loginResponse.token); // Decode the token and set the user state
               console.log('Login successful:', loginResponse);
-              this.router.navigate(['/job-offers/offers']);
-            },
-            error: (loginError) => {
-              console.error('Login failed:', loginError);
+              this.router.navigate(['/job-offers/offers']); // Navigate to candidate home page
             }
-          });
-        },
-        error: (error) => {
-          console.error('Registration failed:', error);
-        }
-      });
+          },
+          error: (loginError) => {
+            console.error('Login failed:', loginError);
+          }
+        });
     } else {
       console.log('Invalid form');
-    } */
+    }
   }
-
-}
 }

@@ -27,11 +27,11 @@ export class RegisterRecruiterComponent implements OnInit {
 
   ) {
     this.registerFormrec = this.fbl.group({
-      fullName: ['', [Validators.required]],
+      name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]], // Corrected the phone number pattern regex
+      phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       password: ['', [Validators.required]],
-      confirmPassword: ['', [Validators.required]]
+      password_conf: ['', [Validators.required]]
     });
   }
 
@@ -45,15 +45,15 @@ export class RegisterRecruiterComponent implements OnInit {
     this.submitted = true;
 
     if (this .registerFormrec.valid) {
-      const { fullName,email,phone, password } = this.registerFormrec.value;
+      const { name,email,phone, password,password_conf } = this.registerFormrec.value;
       forkJoin({
-        userRegistration: this.authService.register({...this.registerFormrec.value,role:3}),
-        candidatRegistration: this.recruiterService.createRecruiter({fullname:fullName,...this.registerFormrec.value})
+        userRegistration: this.authService.register({email,password,role:1,username:name,password_conf}),
+        recruiterRegistration: this.recruiterService.createRecruiter({name,phone,...this.registerFormrec.value})
       })
       .pipe(
         switchMap((responses) => {
            console.log('User registration successful:', responses.userRegistration);
-          console.log('Candidate registration successful:', responses.candidatRegistration);
+          console.log('recruiter registration successful:', responses.recruiterRegistration);
           // Automatically login after successful registrations
           return this.authService.login({ email, password })
         }),
@@ -65,17 +65,20 @@ export class RegisterRecruiterComponent implements OnInit {
       .subscribe({
         next: (loginResponse) => {
           if (loginResponse) {
+            this.authService.decodeToken(loginResponse.token); // Decode the token and set the user state
             console.log('Login successful:', loginResponse);
-            this.router.navigate(['/layout']);
+            this.router.navigate(['/layout']); // Navigate to recruiter home page
           }
         },
         error: (loginError) => {
           console.error('Login failed:', loginError);
         }
-        });
+      });
+  }
+        };
         }
-        }
-        }
+
+
 
 
 
@@ -167,7 +170,7 @@ export class RegisterComponent implements OnInit {
       const { email, password , username } = this.registerForm.value;
       forkJoin({
         userRegistration: this.authService.register({...this.registerForm.value,role:2}),
-        candidatRegistration: this.candidateservice.createCandidat({fullname:username,...this.registerForm.value})
+        candidatRegistration: this.candidateservice.createCandidat({name:username,...this.registerForm.value})
       })
       .pipe(
         switchMap((responses) => {

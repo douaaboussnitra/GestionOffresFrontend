@@ -1,4 +1,5 @@
 export interface JobOffer {
+  skills: string;
   id:                  number;
   title:               string;
   description:         string;

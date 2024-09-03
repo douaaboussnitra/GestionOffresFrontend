@@ -1,58 +1,40 @@
-
 <body class="bg-gray-100 min-h-screen flex flex-col items-center py-8">
 
-    <!-- Header Section -->
-    <header class="text-center mb-8">
-        <h1 class="text-3xl font-bold text-gray-800">Job Title: Front-End Developer</h1>
-        <p class="text-lg text-gray-600">Location: New York, NY | Experience: 3+ Years | Employment Type: Full-Time</p>
-        <p class="text-sm text-gray-500">Posted on: August 10, 2024</p> <!-- Job post date -->
-    </header>
+  <!-- Header Section -->
+  <header class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-gray-800">Job Title: Front-End Developer</h1>
+      <p class="text-lg text-gray-600">Location: Siidi Barnouusu | Experience: 3+ Years | Employment Type: Full-Time</p>
+      <p class="text-sm text-gray-500">Posted on: August 10, 2024</p>
+  </header>
 
-    <!-- Count Section -->
-    <div class="bg-white shadow-md rounded-lg p-6 mb-8 w-3/4 text-center">
-        <h2 class="text-xl font-semibold text-gray-700">Number of Applicants: <span class="text-blue-600">12</span></h2>
-    </div>
+  <!-- Count Section -->
+  <div class="bg-white shadow-md rounded-lg p-6 mb-8 w-3/4 text-center">
+      <h2 class="text-xl font-semibold text-gray-700">Number of Applicants: <span class="text-blue-600">{{formData.length}}</span></h2>
+  </div>
 
-    <!-- User List Section -->
-    <div class="bg-white shadow-md rounded-lg p-6 w-3/4">
-        <h3 class="text-2xl font-bold text-gray-800 mb-4">Applicants</h3>
+  <!-- User List Section -->
+  <div class="bg-white shadow-md rounded-lg p-6 w-3/4">
+      <h3 class="text-2xl font-bold text-gray-800 mb-4">Applicants</h3>
 
-        <!-- Scrollable List -->
-        <ul class="user-list divide-y divide-gray-200">
-            <!-- Applicant 1 -->
-            <li class="py-4 flex items-center bg-white hover:bg-gray-50 transition">
-                <img class="w-10 h-10 rounded-full object-cover mr-4" src="https://via.placeholder.com/40" alt="John Doe">
-                <div class="flex-1">
-                    <h4 class="text-gray-700 font-medium">John Doe</h4>
-                    <p class="text-gray-500 text-sm">johndoe$example.com</p>
-                    <p class="text-gray-400 text-xs">Applied: August 14, 2024 at 10:30 AM</p> <!-- Application time -->
-                </div>
-                <div class="text-right">
-                    <div class="form">
-                        <label class="form-control">
-                            <input type="checkbox" id="checkedMe" name="checkbox" />
-                          </label>
-                    </div>
-                </div>
-            </li>
-            <!-- Applicant 2 -->
-            <li class="py-4 flex items-center bg-gray-50 hover:bg-gray-100 transition">
-                <img class="w-10 h-10 rounded-full object-cover mr-4" src="https://via.placeholder.com/40" alt="Jane Smith">
-                <div class="flex-1">
-                    <h4 class="text-gray-700 font-medium">Jane Smith</h4>
-                    <p class="text-gray-500 text-sm">janesmi$thexample.com</p>
-                    <p class="text-gray-400 text-xs">Applied: August 14, 2024 at 11:15 AM</p> <!-- Application time -->
-                </div>
-                <div class="text-right">
-                    <div class="form">
-                        <label class="form-control">
-                            <input type="checkbox" id="checkedMe" name="checkbox" />
-                          </label>
-                    </div>
-                </div>
-            </li>
-            <!-- Add more applicants as needed -->
-        </ul>
-    </div>
+      <!-- Scrollable List -->
+      <ul class="user-list divide-y divide-gray-200">
+          <!-- Loop through each applicant -->
+          <li class="py-4 flex items-center bg-white hover:bg-gray-50 transition" *ngFor="let offer of formData">
+              <img class="w-10 h-10 rounded-full object-cover mr-4" src="https://via.placeholder.com/40" alt="User Photo">
+              <div class="flex-1">
+                  <h4 class="text-gray-700 font-medium">{{offer.fullName}}</h4>
+                  <p class="text-gray-500 text-sm">{{offer.email}}</p>
+                  <p class="text-gray-400 text-xs">{{offer.phone}}</p>
+              </div>
+              <div class="text-right">
+                  <div class="form">
+                      <label class="form-control">
+                          <input type="checkbox" id="checkedMe" name="checkbox" />
+                      </label>
+                  </div>
+              </div>
+          </li>
+      </ul>
+  </div>
 
-
+</body>

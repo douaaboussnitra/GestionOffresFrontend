@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { jobOffersService } from '../../service/job-offers.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-details',
@@ -8,10 +9,13 @@ import { jobOffersService } from '../../service/job-offers.service';
 })
 export class DetailsComponent implements OnInit {
   formData: any;
-
-  constructor(private jobOffersService: jobOffersService ) {}
+  id: string="";
+  constructor(private route: ActivatedRoute,private jobOffersService: jobOffersService ) {}
   ngOnInit() {
-    this.jobOffersService.getJoboffer(1).subscribe( {
+    this.route.paramMap.subscribe((params:any) => {
+      this.id = params.get('id');
+    });
+    this.jobOffersService.getJoboffer(this.id).subscribe( {
       next : (response) => {
         this.formData = response;
       },

@@ -4,26 +4,19 @@
     <div class="search-bar">
 
         <!-- Select for Région(s) -->
-        <select class="search-select">
-            <option value="">Région(s)</option>
-            <option value="paris">Paris</option>
-            <option value="lyon">Lyon</option>
-            <option value="marseille">Marseille</option>
-            <option value="lille">Lille</option>
-            <!-- Add more regions as needed -->
+        <select class="search-select" [(ngModel)]="selectedContractType">
+            <option value="">Contract Type</option>
+            <option [value]="data.value" *ngFor="let data of contrat">{{data.label}}</option>
         </select>
 
         <!-- Select for Métier -->
-        <select class="search-select">
-            <option value="">Métier</option>
-            <option value="developpeur">Développeur</option>
-            <option value="designer">Designer</option>
-            <option value="gestionnaire">Gestionnaire</option>
-            <option value="commercial">Commercial</option>
+        <select class="search-select" [(ngModel)]="selectedSkill">
+            <option value="">Skills</option>
+            <option [value]="data" *ngFor="let data of Skills">{{data}}</option>
             <!-- Add more métiers as needed -->
         </select>
 
-        <button class="search-button">
+        <button class="search-button" (click)="searchJobs()">
             <img src="assets/search-icon.png" alt="Search">
         </button>
     </div>
@@ -33,39 +26,12 @@
 
     <main>
         <div class="job-listings" >
-            <div class="job" routerLink="/auth/login">
-                <img src="assets/OFFRE-EMPLOI.webp" alt="Elbilia Skolar">
+            <div class="job" *ngFor="let offers of filteredJobOffers  ">
+                <img src="assets/OFFRE-EMPLOI.webp" alt="Elbilia Skolar" [routerLink]="['/job-offers/details', offers.id]">
                 <div class="job-info">
-                    <span class="category">EMPLOI</span>
-                    <h3>Recrutement d’enseignants et professeurs chez Elbilia Skolar</h3>
-                    <span class="date">juillet 6, 2024</span>
-                </div>
-            </div>
-
-            <div class="job" routerLink="/auth/login">
-                <img src="assets/OFFRE-EMPLOI.webp" alt="Air Arabia">
-                <div class="job-info">
-                    <span class="category">EMPLOI</span>
-                    <h3>(33) Postes Vacants chez Air Arabia: Saisissez Votre Chance</h3>
-                    <span class="date">juillet 1, 2024</span>
-                </div>
-            </div>
-
-            <div class="job" routerLink="/auth/login" >
-                <img src="assets/OFFRE-EMPLOI.webp" alt="Techniciens">
-                <div class="job-info">
-                    <span class="category">EMPLOI</span>
-                    <h3>Recrutement de 130 Techniciens : Salaires Jusqu’à 6 000 Dirhams par Mois</h3>
-                    <span class="date">juin 30, 2024</span>
-                </div>
-            </div>
-
-            <div class="job" routerLink="/auth/login">
-                <img src="assets/OFFRE-EMPLOI.webp" alt="Anapec">
-                <div class="job-info">
-                    <span class="category">EMPLOI</span>
-                    <h3>Recrutement de 60 Agents d’Encadrement sur Casablanca</h3>
-                    <span class="date">mai 29, 2024</span>
+                    <span class="category ">{{offers.title}} </span>
+                    <h3>{{offers.location}}</h3>
+                    <span class="date">{{offers.createdAt}}</span>
                 </div>
             </div>
         </div>

@@ -1,10 +1,4 @@
 
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;	
-	font-family: Raleway, sans-serif;
-}
 .container {
 	display: flex;
 	align-items: center;
@@ -12,23 +6,23 @@
 	min-height: 100vh;
     background-image: url('../../../../assets/login.webp');
     background-repeat: no-repeat;
-    background-size: cover; 
+    background-size: cover;
 }
-.screen {	
+.screen {
 	background:#805cbe;
-	position: relative;	
+	position: relative;
 	height: 600px;
-	width: 360px;	
+	width: 360px;
 	box-shadow: 0px 0px 24px #5C5696;
 }
 .login {
 	width: 350px;
 	padding: 30px;
-	
+
 }
 .login__field {
-	padding: 20px 0px;	
-	position: relative;	
+	padding: 20px 0px;
+	position: relative;
 }
 .login__input {
 	border: none;

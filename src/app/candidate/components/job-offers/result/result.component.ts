@@ -1,4 +1,6 @@
+import { ApplicationService } from 'src/app/recruiter/components/job-offers/applications/application.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CandidateService } from 'src/app/candidate/candidate.service';
 
 
@@ -10,10 +12,14 @@ import { CandidateService } from 'src/app/candidate/candidate.service';
 })
 export class ResultComponent implements OnInit {
   formData: any;
+  id: any;
 
-  constructor(private candidateService: CandidateService ) {}
+  constructor(private route: ActivatedRoute,private applicationService: ApplicationService ) {}
   ngOnInit() {
-    this.candidateService.getCandidat(1).subscribe( {
+    this.route.paramMap.subscribe((params:any) => {
+      this.id = +params.get('id');
+    });
+    this.applicationService.getAllApplicationById(this.id).subscribe( {
       next : (response) => {
         this.formData = response;
       },

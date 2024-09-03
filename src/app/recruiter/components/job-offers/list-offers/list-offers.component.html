@@ -1,136 +1,45 @@
-
-    
 <div class="bg-gray-100 p-8">
-    <div class="max-w-6xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-        <div class="p-4 flex justify-between items-center">
-            <h2 class="text-2xl font-semibold text-gray-800">Job Offers</h2>
-            <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none" routerLink="/job-offers/form">
-                Add Job Offer
-            </button>
-        </div>
-        <div class="overflow-x-auto">
-            <table class="min-w-full bg-white">
-                <thead>
-                    <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date Posted</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Users Applied</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Company</th>
-                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                    </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                    <!-- Repeat for more rows -->
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Frontend Developer</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2024-08-15</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">23</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">TechCorp</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                            <button class="text-blue-500 hover:text-blue-700 focus:outline-none px-2">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="text-red-500 hover:text-red-700 focus:outline-none px-2">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                            <button class="text-green-500 hover:text-green-700 focus:outline-none px-2">
-                                <i class="fas fa-eye"  routerLink="/job-offers/details"></i>
-                            </button>
-                            <button class="text-black-500 hover:text-black-700 focus:outline-none px-2">
-                                <i class="fas fa-users"routerLink="/job-offers/applications"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <!-- Add more rows here -->
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Backend Developer</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2024-08-14</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">17</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">DevSolutions</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                            <button class="text-blue-500 hover:text-blue-700 focus:outline-none px-2">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="text-red-500 hover:text-red-700 focus:outline-none px-2">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                            <button class="text-green-500 hover:text-green-700 focus:outline-none px-2">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                            <button class="text-black-500 hover:text-black-700 focus:outline-none px-2">
-                                <i class="fas fa-users"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <!-- Add more rows here -->
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">UI/UX Designer</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2024-08-13</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">12</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">DesignHub</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                            <button class="text-blue-500 hover:text-blue-700 focus:outline-none px-2">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="text-red-500 hover:text-red-700 focus:outline-none px-2">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                            <button class="text-green-500 hover:text-green-700 focus:outline-none px-2">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                            <button class="text-black-500 hover:text-black-700 focus:outline-none px-2">
-                                <i class="fas fa-users"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <!-- Add more rows here -->
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Data Analyst</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2024-08-12</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">30</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">DataInsights</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                            <button class="text-blue-500 hover:text-blue-700 focus:outline-none px-2">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="text-red-500 hover:text-red-700 focus:outline-none px-2">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                            <button class="text-green-500 hover:text-green-700 focus:outline-none px-2">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                            <button class="text-black-500 hover:text-black-700 focus:outline-none px-2">
-                                <i class="fas fa-users"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <!-- Add more rows here -->
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Product Manager</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2024-08-11</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">19</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">ProductWorks</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                            <button class="text-blue-500 hover:text-blue-700 focus:outline-none px-2">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="text-red-500 hover:text-red-700 focus:outline-none px-2">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                            <button class="text-green-500 hover:text-green-700 focus:outline-none px-2">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                            <button class="text-black-500 hover:text-black-700 focus:outline-none px-2">
-                                <i class="fas fa-users"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <!-- Repeat for more rows -->
-                </tbody>
-            </table>
-        </div>
-    </div>
-    </div>
-
-
-
+  <div class="max-w-6xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+      <div class="p-4 flex justify-between items-center">
+          <h2 class="text-2xl font-semibold text-gray-800">Job Offers</h2>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none" [routerLink]="'/job-offers/form'">
+              Add Job Offer
+          </button>
+      </div>
+      <div class="overflow-x-auto">
+          <table class="min-w-full bg-white">
+              <thead>
+                  <tr>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date Posted</th>
+                      <!-- <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Users Applied</th> -->
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Company</th>
+                      <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                  <tr *ngFor="let offer of formData">
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{offer.title}}</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{formData.createdAt|date: 'dd-MM-yyyy'}}</td>
+                      <!-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{formData.length}}</td> -->
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{offer.companyName}}</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                          <button class="text-blue-500 hover:text-blue-700 focus:outline-none px-2" [routerLink]="['/job-offers/form', offer.id]">
+                              <i class="fas fa-edit"></i>
+                          </button>
+                          <button class="text-red-500 hover:text-red-700 focus:outline-none px-2" (click)="deleteJobOffer(offer.id)">
+                              <i class="fas fa-trash"></i>
+                          </button>
+                          <button class="text-green-500 hover:text-green-700 focus:outline-none px-2" [routerLink]="['/job-offers/details', offer.id]">
+                              <i class="fas fa-eye"></i>
+                          </button>
+                          <button class="text-black-500 hover:text-black-700 focus:outline-none px-2" [routerLink]="['/job-offers/applications', offer.id]">
+                              <i class="fas fa-users"></i>
+                          </button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>

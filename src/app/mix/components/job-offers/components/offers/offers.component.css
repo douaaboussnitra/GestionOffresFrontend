@@ -6,19 +6,6 @@ header {
   display: flex;
   flex-direction: column;
 }
-
-nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-
-nav ul li {
-  display: inline-block;
-  margin-right: 20px;
-}
-
 nav ul li a {
   text-decoration: none;
   color: #5705a8;
@@ -39,7 +26,7 @@ nav ul li a {
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 4px rgba(208, 7, 7, 0.1);
+  box-shadow: 0 2px 4px rgba(168, 36, 36, 0.1);
 }
 
 .job img {
@@ -72,15 +59,7 @@ h3 {
 }
 
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f3f3f3;
-}
+
 
 .search-container {
   background-color: #8137c1;

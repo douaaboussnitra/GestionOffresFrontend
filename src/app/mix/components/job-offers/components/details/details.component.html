@@ -5,55 +5,41 @@
         <!-- Header Section -->
         <div class="relative">
             <img src="https://images.unsplash.com/photo-1593642634443-44adaa06623a" alt="Office image" class="header-img">
-            <div class="badge">Full Time</div>
-            <button class="apply-button" routerLink="/job-offers/apply">Apply for job</button>
+            <div class="badge">{{ formData.contractType }}</div>
+            <button class="apply-button" [routerLink]="['/job-offers/apply', id]">Apply for job</button>
         </div>
 
         <div class="content">
             <div class="company-info">
                 <img src="https://via.placeholder.com/50" alt="Company logo" class="company-logo">
                 <div>
-                    <h2 class="job-title">UX/UI Designer</h2>
-                    <p class="posted-date">2 years ago</p>
+                    <h2 class="job-title">{{ formData.title }}</h2>
+                    <p class="posted-date">{{formData.createdAt|date: 'dd-MM-yyyy'}}</p>
                 </div>
             </div>
-            <p class="location"><i class="fas fa-map-marker-alt"></i> VQ36+WR8 near Sanjeevni Hospital, Shanti Nagar, Sodala, Jaipur, Rajasthan 302018</p>
-            <p class="website">https://sitesplicers.com</p>
-            <p class="salary">$20 / DAY</p>
-            <p class="application-ends">Application ends: 2026-08-29</p>
+            <p class="location"><i class="fas fa-map-marker-alt"></i>{{formData.location}}</p>
+            <p class="website">https://douaaaa.com</p>
+            <p class="salary">{{formData.salary}} MAD</p>
 
             <!-- Job Information -->
             <div class="job-info">
                 <h3>Job Information</h3>
                 <ul>
                     <li><strong>VIEWS:</strong> 2433 Views</li>
-                    <li><strong>DATE POSTED:</strong> November 25, 2022</li>
+                    <li><strong>DATE POSTED:</strong> {{formData.createdAt|date: 'dd-MM-yyyy'}}</li>
                     <li><strong>EMPLOYER:</strong> Sitesplicers</li>
-                    <li><strong>SALARY:</strong> $20 / DAY</li>
                 </ul>
 
                 <h3 class="job-skills-title">Job Skills</h3>
                 <div class="job-skills">
-                    <span>HTML</span>
-                    <span>JAVA</span>
-                    <span>PHP</span>
+                    <span>{{ formData.skills }}</span>
                 </div>
             </div>
 
             <!-- Job Description -->
             <div class="job-description">
                 <h3>Job Description:</h3>
-                <p>
-                    Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-                </p>
-                <ul>
-                    <li>Establish and promote design guidelines, best practices, and standards.</li>
-                    <li>Execute all visual design stages from concept to final hand-off to engineering.</li>
-                    <li>Partnering with product and engineering to translate business and user goals into elegant experiences.</li>
-                    <li>Actively involved in defining and implementing the company's UI design strategy.</li>
-                    <li>Conduct usability research and evaluate user feedback.</li>
-                    <li>Present and defend designs and key deliverables to peers and executive level stakeholders.</li>
-                </ul>
+                <p>{{ formData.description }}</p>
             </div>
 
             <!-- Share Profile -->

@@ -1,40 +1,4 @@
 
-        /* Navbar */
-        .navbar {
-            background-color: #5f1db0;
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .navbar-left,
-        .navbar-right {
-            display: flex;
-            align-items: center;
-        }
-
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-        }
-
-        .navbar a:hover {
-            text-decoration: underline;
-        }
-
-        .navbar .google-play-badge {
-            display: flex;
-            align-items: center;
-        }
-
-        .navbar .google-play-badge img {
-            width: 120px;
-            margin-left: 10px;
-        }
-
         /* Main Section */
         .main-section {
             text-align: center;
@@ -63,14 +27,8 @@
             width: 400px;
         }
 
-        .option-card img {
-            width: 100%;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-
         .option-card h2 {
-            color: #2c5282;
+            color: #5835a9;
             font-size: 24px;
             margin-bottom: 20px;
             font-weight: bold;
@@ -82,15 +40,11 @@
             padding: 10px 20px;
             border: none;
             border-radius: 50px;
-            cursor: pointer;
             font-size: 16px;
         }
 
-        .option-card button:hover {
-            background-color: #5f1db0;
-        }
 
-        .img_c_r { 
+        .img_c_r {
         height: 250px;
         width: 500px;
         }

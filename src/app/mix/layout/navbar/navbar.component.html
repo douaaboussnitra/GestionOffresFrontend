@@ -1,17 +1,40 @@
 <nav class="navbar">
-  <div class="navbar-left">
-      <div class="google-play-badge">
-          <span>Disponible sur</span>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_FR.svg/512px-Google_Play_Store_badge_FR.svg.png" alt="Google Play">
-      </div>
-      <a href="#">Offres IT Freelance</a>
-      <a href="#">Accueil Candidat</a>
-      <a href="#">Rechercher un emploi</a>
-      <a href="#">Ils recrutent</a>
-      <a href="#">Accueil recruteur</a>
-  </div>
+<!--  <div class="navbar-left">
+    <a href="#" [routerLink]="['/job-offers/offers']">Accueil Candidat</a>
+    <a href="#" [routerLink]="['/layout']">Accueil recruteur</a>
+  </div> -->
+
+  <!-- Display content based on user role -->
+  <ng-container [ngSwitch]="role">
+    <ng-container *ngSwitchCase="1">
+      Content for recruiter
+    </ng-container>
+    <ng-container *ngSwitchCase="2">
+      Content for Candidat
+    </ng-container>
+    <!-- <ng-container *ngSwitchCase="3">
+      Content for admin
+    </ng-container> -->
+  </ng-container>
+
+  <!-- Navbar right section -->
   <div class="navbar-right">
+    <ng-container *ngIf="!isLoggedIn; else loggedIn">
       <a href="#" routerLink="/auth/login">Se connecter</a>
       <a href="#" style="color: #f1c40f;" routerLink="/auth/choose">S'inscrire</a>
+    </ng-container>
+    <ng-template #loggedIn>
+      <div class="navbar-profile" (click)="toggleDropdown()">
+        <img src="job-logo.jpg" alt="Profile"/>
+        <div *ngIf="DropdownOpen">
+          <ul class="nav-profile-dropdown">
+            <hr/>
+            <li (click)="handleLogout()">
+              <p>Logout</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ng-template>
   </div>
 </nav>
