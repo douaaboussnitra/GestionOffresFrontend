@@ -1,37 +1,53 @@
-<div class="container">
-	<div class="screen">
-			<form class="login" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-				<div class="login__field">
-                    <label for="password" class="password"> Username </label>
-					<input type="text" formControlName="username" class="login__input" >
-				</div>
-				<div *ngIf="submitted && registerForm.get('username')?.hasError('required')">
-					username do not match!
-				  </div>
-                <div class="login__field">
-                    <label for="password" class="password"> Email</label>
-					<input type="email" formControlName="email" class="login__input" >
-				</div>
-				<div *ngIf="submitted && registerForm.get('email')?.hasError('required')">
-					Email do not match!
-				  </div>
-                <div class="login__field">
-                    <label for="password" class="password"> Password</label>
-					<input type="password" formControlName="password" class="login__input" #pass (change)="passwordMatchChange(pass.value, confirm.value)">
-				</div>
-				<div *ngIf="passwordMatch">
-					Passwords do not match!
-				  </div>
-                <div class="login__field">
-                    <label for="password" class="password">Password confirmation</label>
-					<input type="password" formControlName="password_conf" class="login__input" (change)="passwordMatchChange(pass.value, confirm.value)" #confirm>
-				</div>
-				<div *ngIf="passwordMatch">
-					Passwords do not match!
-				  </div>
-				<button class="button login__submit">
-					<span class="button__text">SAVE</span>
-				</button>
-			</form>
-	</div>
-</div>
+<form class="Register_rec" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="registerh2 shadow_box p-8 rounded-lg w-full max-w-md">
+      <h2 class="text-2xl font-bold mb-6 text-center">Candidate Registration</h2>
+
+      <div class="margin_4">
+        <label class="registerh2 block font-semibold mb-2" for="username">
+          <i class="fas fa-user mr-2"></i> Username
+        </label>
+        <input class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" formControlName="username" type="text" id="username" name="username" required>
+        <small *ngIf="submitted && registerForm.get('username')?.hasError('required')">
+          Username is required!
+        </small>
+      </div>
+
+      <div class="margin_4">
+        <label class="registerh2 block font-semibold mb-2" for="email">
+          <i class="fas fa-envelope mr-2"></i> Email
+        </label>
+        <input class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" formControlName="email" type="email" id="email" name="email" required>
+        <div *ngIf="submitted && registerForm.get('email').invalid" class="error-message">
+          <small *ngIf="registerForm.get('email').errors?.['required']">Email is required.</small>
+          <small *ngIf="registerForm.get('email').errors?.['email'] || registerForm.get('email').errors?.['pattern']">Please enter a valid email.</small>
+        </div>
+      </div>
+
+      <div class="margin_4">
+        <label class="registerh2 block font-semibold mb-2" for="password">
+          <i class="fas fa-lock mr-2"></i> Password
+        </label>
+        <input class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" (change)="passwordMatchChange(pass.value, confirm.value)" #pass formControlName="password" type="password" id="password" name="password" required>
+        <div *ngIf="submitted && registerForm.get('password').invalid">
+          <small *ngIf="registerForm.get('password').errors?.['required']">Password is required.</small>
+          <small *ngIf="registerForm.get('password').errors?.['minlength']">Min Length Password is 8.</small>
+        </div>
+      </div>
+
+      <div class="margin_4">
+        <label class="registerh2 block font-semibold mb-2" for="password_conf">
+          <i class="fas fa-lock mr-2"></i> Confirm Password
+        </label>
+        <input class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" (change)="passwordMatchChange(pass.value, confirm.value)" #confirm formControlName="password_conf" type="password" id="password_conf" name="password_conf" required>
+        <small *ngIf="passwordMatch">
+          Passwords do not match!
+        </small>
+      </div>
+
+      <button class="btn_submit w-full font-semibold py-2 rounded-lg" type="submit">
+        <i class="fa-solid fa-floppy-disk mr-2"></i> Register
+      </button>
+    </div>
+  </div>
+</form>

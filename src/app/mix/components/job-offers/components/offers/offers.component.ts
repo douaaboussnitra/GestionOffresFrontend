@@ -1,4 +1,3 @@
-import { Skill } from './../../../../../models/skill.model';
 import { Component, OnInit } from '@angular/core';
 import { jobOffersService } from '../../service/job-offers.service';
 
@@ -22,17 +21,15 @@ export class offersComponent implements OnInit {
   constructor(private jobOffersService: jobOffersService) {}
 
   ngOnInit() {
-
     this.jobOffersService.getAllJoboffer().subscribe({
       next: (response) => {
-        this.filteredJobOffers = response; // Initialize with all job offers
+        this.filteredJobOffers = response; // res list serch
       },
       error: (error) => {
         console.error('Error fetching data:', error);
       }
     });
 
-    // Fetch all skills
     this.jobOffersService.getAllSkills().subscribe({
       next: (response) => {
         this.Skills = response;
@@ -43,16 +40,16 @@ export class offersComponent implements OnInit {
     });
   }
 
-  // Method to handle search
   searchJobs() {
-    // Send a request to get filtered job offers
     this.jobOffersService.searchJobOffers(this.selectedContractType, this.selectedSkill).subscribe({
       next: (response) => {
-        this.filteredJobOffers = response; // Update with filtered results
+        this.filteredJobOffers = response; // affichage results
       },
       error: (error) => {
         console.error('Error fetching filtered jobs:', error);
       }
     });
   }
+
+
 }

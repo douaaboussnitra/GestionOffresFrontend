@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/mix/components/auth/service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,37 +12,44 @@ import { jobOffersService } from 'src/app/mix/components/job-offers/service/job-
 })
 export class ListOffersComponent implements OnInit {
   formData: any;
-
   idJob: any;
-  applications:any
+  applications: any;
+  idRec : string;
 
   constructor(
     private fb: FormBuilder,
-    private jobOffersService: jobOffersService, // Changed to PascalCase
+    private jobOffersService: jobOffersService,
     private candidateService: CandidateService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService,
+
   ) {}
 
   ngOnInit() {
-    // Subscribe to route parameters to get the job ID
-   this.route.paramMap.subscribe((params) => {
+    //  get the job ID
+    this.route.paramMap.subscribe((params) => {
       this.idJob = params.get('id');
+    });
 
-      // Load candidates after retrieving job ID
-/*       this.loadCandidatesByJobId(this.idJob);
- */    });
+    this.authService.user$.subscribe({
+      next: (user) => {
+        this.idRec = user.id;
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
 
     // Load all job offers on initialization
     this.loadJobOffers();
   }
 
   loadJobOffers() {
-    this.jobOffersService.getAllJoboffer().subscribe({
-      next: (response) => {
+    this.jobOffersService.getAllJobofferRec(this.idRec).subscribe({
+      next: (response: any) => {
         this.formData = response;
-        console.log(this.formData)
-
+        console.log(this.formData);
       },
       error: (error) => {
         console.error('Error fetching job offers:', error);
@@ -49,23 +57,11 @@ export class ListOffersComponent implements OnInit {
     });
   }
 
-  /* loadCandidatesByJobId(idJob: number) {
-    this.candidateService.getCandidatByJobId(idJob).subscribe({
-      next: (response) => {
-        this.formData = response;
-        console.log(this.formData);
-      },
-      error: (error) => {
-        console.error('Error fetching candidates:', error);
-      }
-    });
-  } */
-
   deleteJobOffer(idJob: number): void {
     if (confirm('Are you sure you want to delete this job offer?')) {
       this.jobOffersService.deleteJoboffer(idJob.toString()).subscribe({
         next: () => {
-          this.formData = this.formData.filter((offer: any) => offer.id !== idJob);
+          this.formData = this.formData.filter((offer: any) => offer.id !== idJob); // get alljop don't remove
           alert('Job offer deleted successfully.');
         },
         error: (error) => {

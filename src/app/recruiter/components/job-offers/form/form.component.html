@@ -1,69 +1,98 @@
-<div class="form-container">
-  <h1>Publish a Job or Internship Offer</h1>
-  <form [formGroup]="jobPostForm" (ngSubmit)="onSubmit()">
-    <!-- Job Title -->
-    <div class="form-group">
-      <label for="title">Job Title</label>
-      <input type="text" id="title" formControlName="title" placeholder="Web Developer" required>
-    </div>
+<div class="form">
+  <div class="form-container">
+    <h1>Publish a Job or Internship Offer</h1>
+    <form [formGroup]="jobPostForm" (ngSubmit)="onSubmit()">
+      <div class="rows">
+        <div class="form-group margin_4">
+          <label for="title">Job Title</label>
+          <input type="text" id="title" formControlName="title" placeholder="Web Developer" required>
+          <!-- Error message is shown only after submit or when the field is touched and invalid -->
+          <ng-container *ngIf="(submitted || jobPostForm.get('title').touched) && jobPostForm.get('title').invalid" class="error-message">
+            <small *ngIf="jobPostForm.get('title').errors?.['required']">Job title is required.</small>
+          </ng-container>
+        </div>
 
-    <!-- Company Name -->
-    <div class="form-group">
-      <label for="companyName">Company Name</label>
-      <input type="text" id="companyName" formControlName="companyName" placeholder="OpenAI" required>
-    </div>
+        <div class="form-group margin_4">
+          <label for="companyName">Company Name</label>
+          <input type="text" id="companyName" formControlName="companyName" placeholder="OpenAI" required>
+          <ng-container *ngIf="(submitted || jobPostForm.get('companyName').touched) && jobPostForm.get('companyName').invalid" class="error-message">
+            <small *ngIf="jobPostForm.get('companyName').errors?.['required']">Company name is required.</small>
+          </ng-container>
+        </div>
+      </div>
 
-    <!-- Location -->
-    <div class="form-group">
-      <label for="location">Location</label>
-      <input type="text" id="location" formControlName="location" placeholder="Paris, barnoussi" required>
-    </div>
+      <div class="rows">
+        <div class="form-group margin_4">
+          <label for="location">Location</label>
+          <input type="text" id="location" formControlName="location" placeholder="Paris, barnoussi" required>
+          <ng-container *ngIf="(submitted || jobPostForm.get('location').touched) && jobPostForm.get('location').invalid" class="error-message">
+            <small *ngIf="jobPostForm.get('location').errors?.['required']">Location is required.</small>
+            <small *ngIf="jobPostForm.get('location').errors?.['pattern']">Location format is invalid.</small>
+          </ng-container>
+        </div>
 
-    <!-- Contract Type -->
-    <div class="form-group">
-      <label for="contractType">Contract Type</label>
-      <select id="contractType" formControlName="contractType" required>
-        <option value="">Select</option>
-        <option value="fulltime">Full-time</option>
-        <option value="parttime">Part-time</option>
-        <option value="internship">Internship</option>
-        <option value="freelance">Freelance</option>
-      </select>
-    </div>
+        <div class="form-group margin_4">
+          <label for="contractType">Contract Type</label>
+          <select id="contractType" formControlName="contractType" required>
+            <option value="">Select</option>
+            <option value="fulltime">Full-time</option>
+            <option value="parttime">Part-time</option>
+            <option value="internship">Internship</option>
+            <option value="freelance">Freelance</option>
+          </select>
+          <ng-container *ngIf="(submitted || jobPostForm.get('contractType').touched) && jobPostForm.get('contractType').invalid" class="error-message">
+            <small *ngIf="jobPostForm.get('contractType').errors?.['required']">Contract type is required.</small>
+          </ng-container>
+        </div>
+      </div>
 
-    <!-- Job Description -->
-    <div class="form-group">
-      <label for="description">Job Description</label>
-      <textarea id="description" formControlName="description" rows="5" placeholder="Details..." required></textarea>
-    </div>
+      <div class="rows">
+        <div class="form-group margin_4">
+          <label for="email">Contact Email</label>
+          <input type="email" id="email" formControlName="email" placeholder="douaa@company.com" required>
+          <ng-container *ngIf="(submitted || jobPostForm.get('email').touched) && jobPostForm.get('email').invalid" class="error-message">
+            <small *ngIf="jobPostForm.get('email').errors?.['required']">Email is required.</small>
+            <small *ngIf="jobPostForm.get('email').errors?.['email']">Please enter a valid email address.</small>
+          </ng-container>
+        </div>
 
-    <!-- Required Skills -->
-    <div class="form-group">
-      <label for="skills">Required Skills</label>
-      <input type="text" id="skills" formControlName="skills" placeholder="E.g., JavaScript, React, Node.js" required>
-    </div>
+        <div class="form-group margin_4">
+          <label for="skills">Required Skills</label>
+          <input type="text" id="skills" formControlName="skills" placeholder="E.g., JavaScript, angular, Node.js" required>
+          <ng-container *ngIf="(submitted || jobPostForm.get('skills').touched) && jobPostForm.get('skills').invalid" class="error-message">
+            <small *ngIf="jobPostForm.get('skills').errors?.['required']">Skills are required.</small>
+          </ng-container>
+        </div>
+      </div>
 
-    <!-- Company Hierarchy Level -->
-    <div class="form-group">
-      <label for="hierarchyLevel">Company hierarchy Level</label>
-      <input type="text" id="hierarchyLevel" formControlName="hierarchyLevel" placeholder="Manager, Senior Developer, etc." required>
-    </div>
+      <div class="rows">
+        <div class="form-group margin_4">
+          <label for="hierarchyLevel">Company hierarchy Level</label>
+          <input type="text" id="hierarchyLevel" formControlName="hierarchyLevel" placeholder="Manager, Senior Developer, etc." required>
+          <ng-container *ngIf="(submitted || jobPostForm.get('hierarchyLevel').touched) && jobPostForm.get('hierarchyLevel').invalid" class="error-message">
+            <small *ngIf="jobPostForm.get('hierarchyLevel').errors?.['required']">Hierarchy level is required.</small>
+          </ng-container>
+        </div>
 
-    <!-- Salary -->
-    <div class="form-group">
-      <label for="salary">Salary (optional)</label>
-      <input type="text" id="salary" formControlName="salary" placeholder="5000 dh">
-    </div>
+        <div class="form-group margin_4">
+          <label for="salary">Salary (optional)</label>
+          <input type="text" id="salary" formControlName="salary" placeholder="5000 dh">
+        </div>
+      </div>
 
-    <!-- Contact Email -->
-    <div class="form-group">
-      <label for="email">Contact Email</label>
-      <input type="email" id="email" formControlName="email" placeholder="douaa@company.com" required>
-    </div>
+      <div class="form-group margin_4">
+        <label for="description">Job Description</label>
+        <textarea id="description" formControlName="description" rows="5" placeholder="Details..." required></textarea>
+        <ng-container *ngIf="(submitted || jobPostForm.get('description').touched) && jobPostForm.get('description').invalid" class="error-message">
+          <small *ngIf="jobPostForm.get('description').errors?.['required']">Job description is required.</small>
+        </ng-container>
+      </div>
 
-    <!-- Submit Button -->
-    <div class="form-group">
-      <button type="submit" class="submit-button">Publish Offer</button>
-    </div>
-  </form>
+      <div class="form-group margin_4">
+        <button class="btn_submit w-full font-semibold py-2 mt-2 rounded-lg" type="submit">
+          <i class="fa-solid fa-floppy-disk mr-2"></i> Publish Offer
+        </button>
+      </div>
+    </form>
+  </div>
 </div>

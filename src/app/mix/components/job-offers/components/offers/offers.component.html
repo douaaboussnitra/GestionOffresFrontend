@@ -1,39 +1,46 @@
- <header>
+<header>
   <div class="search-container">
-    <h1>Trouvez votre futur job parmi 3501 postes ouverts</h1>
+    <h1>Find your future job</h1>
     <div class="search-bar">
+      <!-- Select for Contract Type -->
+      <select class="search-select" [(ngModel)]="selectedContractType" (ngModelChange)="searchJobs()">
+        <option value="">Contract Type</option>
+        <option [value]="data.value" *ngFor="let data of contrat">{{data.label}}</option>
+      </select>
 
-        <!-- Select for Région(s) -->
-        <select class="search-select" [(ngModel)]="selectedContractType">
-            <option value="">Contract Type</option>
-            <option [value]="data.value" *ngFor="let data of contrat">{{data.label}}</option>
-        </select>
-
-        <!-- Select for Métier -->
-        <select class="search-select" [(ngModel)]="selectedSkill">
-            <option value="">Skills</option>
-            <option [value]="data" *ngFor="let data of Skills">{{data}}</option>
-            <!-- Add more métiers as needed -->
-        </select>
-
-        <button class="search-button" (click)="searchJobs()">
-            <img src="assets/search-icon.png" alt="Search">
-        </button>
+      <!-- Select for Skills -->
+      <select class="search-select" [(ngModel)]="selectedSkill" (ngModelChange)="searchJobs()">
+        <option value="">Skills</option>
+        <option [value]="data" *ngFor="let data of Skills">{{data}}</option>
+      </select>
     </div>
-</div>
+  </div>
+</header>
 
-    </header>
+<main>
+  <div class="job-listings">
+    <!-- Show message when no data  -->
+    <p *ngIf="filteredJobOffers.length === 0" class="text-center text-gray-500 text-xl mt-8">NO DATA</p>
 
-    <main>
-        <div class="job-listings" >
-            <div class="job" *ngFor="let offers of filteredJobOffers  ">
-                <img src="assets/OFFRE-EMPLOI.webp" alt="Elbilia Skolar" [routerLink]="['/job-offers/details', offers.id]">
-                <div class="job-info">
-                    <span class="category ">{{offers.title}} </span>
-                    <h3>{{offers.location}}</h3>
-                    <span class="date">{{offers.createdAt}}</span>
-                </div>
+    <!-- Job offers list -->
+    <ul *ngIf="filteredJobOffers.length > 0">
+      <li class="job" *ngFor="let offers of filteredJobOffers"> <!-- loop -->
+        <div class="job-content">
+           <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="60px" height="60px" viewBox="0,0,256,256"><g fill="#fbc11a" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(2,2)"><path d="M119,1h-70c-1.7,0 -3,1.3 -3,3v24.8l-37.1,14.4c-1.1,0.4 -1.9,1.6 -1.9,2.8v78c0,1.7 1.3,3 3,3h11c1.7,0 3,-1.3 3,-3v-18c0,-1.7 1.3,-3 3,-3h6c1.7,0 3,1.3 3,3v18c0,1.7 1.3,3 3,3h4c1.7,0 3,-1.3 3,-3v-73.5c0,-1.2 0.7,-2.4 1.8,-2.9c2,-0.9 4.2,0.6 4.2,2.7v76.5v0.1h23c1.7,0 3,-1.3 3,-3v-18c0,-1.7 1.3,-3 3,-3h6c1.7,0 3,1.3 3,3v18c0,1.7 1.3,3 3,3h26c1.7,0 3,-1.3 3,-3v-119.9c0,-1.7 -1.3,-3 -3,-3zM33,86c0,1.7 -1.3,3 -3,3c-1.7,0 -3,-1.3 -3,-3v-4c0,-1.7 1.3,-3 3,-3c1.7,0 3,1.3 3,3zM33,66c0,1.7 -1.3,3 -3,3c-1.7,0 -3,-1.3 -3,-3v-4c0,-1.7 1.3,-3 3,-3c1.7,0 3,1.3 3,3zM70,86c0,1.7 -1.3,3 -3,3c-1.7,0 -3,-1.3 -3,-3v-4c0,-1.7 1.3,-3 3,-3c1.7,0 3,1.3 3,3zM70,66c0,1.7 -1.3,3 -3,3c-1.7,0 -3,-1.3 -3,-3v-4c0,-1.7 1.3,-3 3,-3c1.7,0 3,1.3 3,3zM70,46c0,1.7 -1.3,3 -3,3c-1.7,0 -3,-1.3 -3,-3v-4c0,-1.7 1.3,-3 3,-3c1.7,0 3,1.3 3,3zM70,26c0,1.7 -1.3,3 -3,3c-1.7,0 -3,-1.3 -3,-3v-4c0,-1.7 1.3,-3 3,-3c1.7,0 3,1.3 3,3zM87,86c0,1.7 -1.3,3 -3,3c-1.7,0 -3,-1.3 -3,-3v-4c0,-1.7 1.3,-3 3,-3c1.7,0 3,1.3 3,3zM87,66c0,1.7 -1.3,3 -3,3c-1.7,0 -3,-1.3 -3,-3v-4c0,-1.7 1.3,-3 3,-3c1.7,0 3,1.3 3,3zM87,46c0,1.7 -1.3,3 -3,3c-1.7,0 -3,-1.3 -3,-3v-4c0,-1.7 1.3,-3 3,-3c1.7,0 3,1.3 3,3zM87,26c0,1.7 -1.3,3 -3,3c-1.7,0 -3,-1.3 -3,-3v-4c0,-1.7 1.3,-3 3,-3c1.7,0 3,1.3 3,3zM104,86c0,1.7 -1.3,3 -3,3c-1.7,0 -3,-1.3 -3,-3v-4c0,-1.7 1.3,-3 3,-3c1.7,0 3,1.3 3,3zM104,66c0,1.7 -1.3,3 -3,3c-1.7,0 -3,-1.3 -3,-3v-4c0,-1.7 1.3,-3 3,-3c1.7,0 3,1.3 3,3zM104,46c0,1.7 -1.3,3 -3,3c-1.7,0 -3,-1.3 -3,-3v-4c0,-1.7 1.3,-3 3,-3c1.7,0 3,1.3 3,3zM104,26c0,1.7 -1.3,3 -3,3c-1.7,0 -3,-1.3 -3,-3v-4c0,-1.7 1.3,-3 3,-3c1.7,0 3,1.3 3,3z"></path></g></g></svg>
+
+          <div class="job-info">
+            <a class="job-title"> {{ offers.title }}</a>
+            <div class="job-details">
+              <span> <i class="fa-solid fa-location-dot mr-2" style="color: #fbc11a;"></i>{{ offers.location }}</span> &nbsp;&nbsp;&nbsp;
+
+              <span> <i class="fa-solid fa-calendar-days mr-2" style="color: #fbc11a;" ></i>{{ offers.createdAt | date }}</span>
             </div>
+          </div>
+          <div class="job-apply">
+            <button class="apply-button" [routerLink]="['/job-offers/details', offers.id]">Apply ➔</button>
+          </div>
         </div>
-    </main>
-
+      </li>
+    </ul>
+  </div>
+</main>

@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RecruiterMenuComponent } from './recruiter/layout/recruiter-menu/recruiter-menu.component';
 import { HomeComponent } from './mix/components/home/home.component';
+import { authGuard } from './Guards/auth.guard';
+import { recruiterGuard } from './Guards/recruiter.guard';
 const routes: Routes = [
   {
     path: 'auth',
@@ -13,8 +15,8 @@ const routes: Routes = [
       },
 
       {
-        path: 'layout',
-        component : RecruiterMenuComponent
+        path: 'liste-offers',
+        component : RecruiterMenuComponent ,  canActivate: [authGuard, recruiterGuard],
         },
 
         {

@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+.container{
+  min-height: 95vh !important;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+small{
+  color: red;
+  position: absolute;
+  font-size: 80%;
+  left: 0;
+  bottom: 10px;
+}
+
+.margin_4 {
+  padding-bottom: 2rem;
+  position: relative;
+}
+
+.btn_submit {
+	background: #F1C232;
+	font-size: 14px;
+  color: #053372 ;
+	text-transform: uppercase;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+  justify-content: center;
+}
+
+.shadow_box {
+  box-shadow: 0px 0px 24px #8395b0;
+  background-color: #c5d3ded4;
+}
+
+
+.registerh2{
+  color: #053372;
+}

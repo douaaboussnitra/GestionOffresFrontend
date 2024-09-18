@@ -11,11 +11,9 @@ export class ChooseRoleComponent {
   constructor(private router: Router) {}
 
   onCandidateClick() {
-    // Navigate to the candidate registration page
     this.router.navigate(['/auth/register']);
   }
 
   onRecruiterClick() {
-    // Navigate to the recruiter registration page
     this.router.navigate(['/auth/register-recruiter']);  }
 }

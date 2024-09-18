@@ -18,12 +18,12 @@
     display: grid;
     place-content: center;
   }
-  
+
   #checkedMe {
       outline: none !important;
       cursor: pointer;
   }
-  
+
   #checkedMe[type="checkbox"] {
     -webkit-appearance: none;
     appearance: none;
@@ -38,7 +38,7 @@
     display: grid;
     place-content: center;
   }
-  
+
   #checkedMe[type="checkbox"]::before {
     content: "";
     width: 0.65em;
@@ -50,18 +50,68 @@
     box-shadow: inset 1em 1em green; /* Set check color to green */
     background-color: transparent; /* Ensure background color is transparent */
   }
-  
+
   #checkedMe[type="checkbox"]:checked::before {
     transform: scale(1);
     background-color: green; /* Set check mark color to green */
   }
-  
+
   #checkedMe[type="checkbox"]:focus {
     outline: max(2px, 0.15em) solid currentColor;
     outline-offset: max(2px, 0.15em);
   }
-  
+
   #checkedMe[type="checkbox"]:disabled {
     color: #959495;
     cursor: not-allowed;
   }
+
+  .applications{
+    background-color: #e8f3fb;
+  }
+
+
+button {
+  padding: 12.5px 30px;
+  border-radius: 50px;
+  background-color: #053372;
+  color: #F1C232;
+  font-weight: Bold;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+}
+
+button:hover {
+  background-color: #1d4b8c;
+  box-shadow: 0 0 20px #7796ac50;
+  transform: scale(1.1);
+}
+
+.btn_contaire{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+}
+
+img:hover {
+  background-color: #b4c3ced4;
+  transform: scale(1.1);
+}
+
+.block{
+  box-shadow: 0px 0px 24px #8395b0;
+  background-color: #c5d3ded4;
+}
+
+li:hover{
+  background-color: #b4c3ced4;
+}
+
+li{
+  padding: 0 20px;
+}
+
+.textColor{
+  color: #053372;
+}

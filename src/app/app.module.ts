@@ -7,6 +7,8 @@ import { FooterComponent } from './mix/layout/footer/footer.component';
 import { RecruiterMenuComponent } from './recruiter/layout/recruiter-menu/recruiter-menu.component';
 import { NavbarComponent } from './mix/layout/navbar/navbar.component';
 import { HomeComponent } from './mix/components/home/home.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { HomeComponent } from './mix/components/home/home.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,3 @@
-// register.component.ts
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -24,8 +23,8 @@ export class RegisterComponent implements OnInit {
   ) {
     this.registerForm = this.fb.group({
       username: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email,Validators.pattern(/^[a-zA-Z][a-zA-Z0-9._%+-]*@gmail\.com$/)]],//regexr
+      password: ['', [Validators.required, Validators.minLength(8)]],
       password_conf: ['', [Validators.required]]
     });
   }
@@ -42,11 +41,11 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       const { email, password, username } = this.registerForm.value;
 
-      forkJoin({
+      forkJoin({ //req
         userRegistration: this.authService.register({ ...this.registerForm.value, role: 2 }),
         candidatRegistration: this.candidateService.createCandidat({ fullname: username, ...this.registerForm.value })
       })
-        .pipe(
+        .pipe( //res
           switchMap((responses) => {
             console.log('User registration successful:', responses.userRegistration);
             console.log('Candidate registration successful:', responses.candidatRegistration);
@@ -61,10 +60,10 @@ export class RegisterComponent implements OnInit {
         )
         .subscribe({
           next: (loginResponse) => {
-            if (loginResponse) {
+            if (loginResponse) {  // exixte
               this.authService.decodeToken(loginResponse.token); // Decode the token and set the user state
               console.log('Login successful:', loginResponse);
-              this.router.navigate(['/job-offers/offers']); // Navigate to candidate home page
+              this.router.navigate(['/job-offers/offers']);
             }
           },
           error: (loginError) => {

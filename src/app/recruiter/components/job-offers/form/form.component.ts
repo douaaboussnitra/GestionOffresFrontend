@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/mix/components/auth/service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,12 +12,16 @@ import { jobOffersService } from 'src/app/mix/components/job-offers/service/job-
 export class FormComponent implements OnInit {
   jobPostForm: FormGroup;
   idJob: string | null = null;
+  submitted = false;
+  postedBy: any;
 
   constructor(
     private fb: FormBuilder,
     private jobOffersService: jobOffersService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute ,
+    private authService: AuthService
+
   ) {
     this.jobPostForm = this.fb.group({
       title: ['', [Validators.required]],
@@ -32,6 +37,15 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.authService.user$.subscribe({
+      next: (user) => {
+        this.postedBy = user.id;
+      },
+      error: (error) => {
+        console.error(error);
+      }
+      });
     this.route.paramMap.subscribe((params) => {
       this.idJob = params.get('id');
 
@@ -59,6 +73,7 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.submitted = true;
     if (this.jobPostForm.valid) {
       console.log(this.jobPostForm)
       if (this.idJob) {
@@ -73,9 +88,12 @@ export class FormComponent implements OnInit {
             console.error('Error updating job offer', error);
           },
         });
-      } else {
+      }
+      else {
+        let req = this .jobPostForm.value;
+        req ['postedBy'] = this.postedBy;
         // Call the createJoboffer service method
-        this.jobOffersService.createJoboffer(this.jobPostForm.value).subscribe({
+        this.jobOffersService.createJoboffer(req).subscribe({
           next: (response: any) => {
             console.log('Creation successful', response);
             // Navigate to the job offer details page after successful creation

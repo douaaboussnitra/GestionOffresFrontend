@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { apiUrl } from 'src/app/environements/backend';
 import { JobOffer } from 'src/app/models/JobOffers.model';
@@ -12,6 +12,10 @@ export class jobOffersService {
 
   getAllJoboffer(): Observable<JobOffer[]> {
     return this.http.get<JobOffer[]>(`${apiUrl}/joboffer`);
+  }
+
+  getAllJobofferRec(id:string): Observable<JobOffer[]> {
+    return this.http.get<JobOffer[]>(`${apiUrl}/joboffer/rec/${id}`);
   }
 
   getJoboffer(id: string): Observable<JobOffer> {
@@ -36,9 +40,7 @@ export class jobOffersService {
 
   // Method to search job offers based on contract type and skill
   searchJobOffers(contractType: string, skill: string): Observable<JobOffer[]> {
-    const params = new HttpParams()
-      .set('contractType', contractType)
-      .set('skill', skill);
-    return this.http.get<JobOffer[]>(`${apiUrl}/joboffer/search/job`, { params });
+    return this.http.get<JobOffer[]>(`${apiUrl}/joboffer/search/job?contractType=${contractType}&skill=${skill}`);
   }
+
 }

@@ -4,14 +4,21 @@
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 24px #8395b0;
+  background-color: #c5d3ded4;
 }
 
 .apply-form-section h1 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 24px;
-  color: #333;
+  color: #053372;
+  
+}
+
+.apply{
+  background-color: #e8f3fb;
+  padding: 10px 0;
 }
 
 .apply-form {
@@ -27,7 +34,7 @@
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
-  color: #555;
+  color: #000000;
 }
 
 .form-group input,
@@ -48,38 +55,7 @@
   resize: vertical;
 }
 
-.submit-button {
-  width: 100%;
-  padding: 12px;
-  background-color: #8c2ec3;
-  border: none;
-  border-radius: 4px;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.submit-button:hover {
-  background-color: #7b4abb;
-}
-
-.submitted-info {
-  margin-top: 30px;
-  padding: 15px;
-  background-color: #e9f7ef;
-  border: 1px solid #d4edda;
-  border-radius: 8px;
-}
-
-.submitted-info h2 {
-  font-size: 22px;
-  color: #155724;
-  margin-bottom: 15px;
-}
-
-.submitted-info p {
-  margin: 5px 0;
-  font-size: 16px;
+small{
+  color: red;
 }
 

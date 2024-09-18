@@ -6,10 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./recruiter-menu.component.css']
 })
 export class RecruiterMenuComponent {
-  isSidebarOpen = false;
-
-  toggleSidebar() {
-    this.isSidebarOpen = !this.isSidebarOpen;
-  }
-
 }

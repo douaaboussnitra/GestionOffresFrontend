@@ -1,40 +1,54 @@
 <nav class="navbar">
-<!--  <div class="navbar-left">
-    <a href="#" [routerLink]="['/job-offers/offers']">Accueil Candidat</a>
-    <a href="#" [routerLink]="['/layout']">Accueil recruteur</a>
-  </div> -->
+  <div class="logo_goback">
+    <div class="btn_container">
 
-  <!-- Display content based on user role -->
-  <ng-container [ngSwitch]="role">
-    <ng-container *ngSwitchCase="1">
-      Content for recruiter
-    </ng-container>
-    <ng-container *ngSwitchCase="2">
-      Content for Candidat
-    </ng-container>
-    <!-- <ng-container *ngSwitchCase="3">
-      Content for admin
-    </ng-container> -->
-  </ng-container>
+      <div *ngIf="!check_btn_goback()" class="btn-content" (click)="go_back()">
+        <i class="fa-solid fa-circle-arrow-left goback"></i>
+      </div>
 
-  <!-- Navbar right section -->
+    </div>
+
+    <div class="logo">
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px" height="40px" viewBox="0,0,256,256">
+        <g fill="#fbc11a" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+          <g transform="scale(8,8)">
+            <path d="M14,2c-6.617,0 -12,5.383 -12,12c0,6.617 5.383,12 12,12c2.949,0 5.64823,-1.0747 7.74023,-2.8457l6.55273,6.55273c0.391,0.391 1.02306,0.391 1.41406,0c0.391,-0.391 0.391,-1.02306 0,-1.41406l-6.55273,-6.55273c1.771,-2.092 2.8457,-4.79123 2.8457,-7.74023c0,-6.617 -5.383,-12 -12,-12zM14,4c5.514,0 10,4.486 10,10c0,5.514 -4.486,10 -10,10c-5.514,0 -10,-4.486 -10,-10c0,-5.514 4.486,-10 10,-10zM12,6c-0.553,0 -1,0.448 -1,1v2h-2c-1.103,0 -2,0.897 -2,2v7c0,1.103 0.897,2 2,2h10c1.103,0 2,-0.897 2,-2v-7c0,-1.103 -0.897,-2 -2,-2h-2v-2c0,-0.552 -0.447,-1 -1,-1zM13,8h2v1h-2zM9,11h10l0.00195,2h-10.00195zM9,15h10.00195v3h-10.00195z">
+            </path>
+          </g>
+        </g>
+      </svg>
+      <div routerLink="/home"><span class="primary">JOB</span>Search</div>
+    </div>
+  </div>
+
+  <div class="titlerole">
+    <ng-container [ngSwitch]="role">
+      <ng-container *ngSwitchCase="1">
+        <span style="color: #FFD43B; font-size: medium;" routerLink="/job-offers/liste-offers">
+          <i class="fa-regular fa-rectangle-list mr-2" style="color: #FFD43B;"></i>Job List
+        </span>
+      </ng-container>
+      <ng-container *ngSwitchCase="2">
+        <span class="offers" routerLink="/job-offers/offers">
+          <i class="fa-solid fa-briefcase mr-2"></i>Offers
+        </span>
+      </ng-container>
+    </ng-container>
+  </div>
+
   <div class="navbar-right">
     <ng-container *ngIf="!isLoggedIn; else loggedIn">
-      <a href="#" routerLink="/auth/login">Se connecter</a>
-      <a href="#" style="color: #f1c40f;" routerLink="/auth/choose">S'inscrire</a>
+      <a href="#" routerLink="/auth/login">
+        <i class="fa-solid fa-right-to-bracket mr-2"></i>Log In
+      </a>
+      <a href="#" style="color: #f1c40f;" routerLink="/auth/choose">
+        <i class="fa-solid fa-user-plus mr-2"></i>Sign Up
+      </a>
     </ng-container>
     <ng-template #loggedIn>
-      <div class="navbar-profile" (click)="toggleDropdown()">
-        <img src="job-logo.jpg" alt="Profile"/>
-        <div *ngIf="DropdownOpen">
-          <ul class="nav-profile-dropdown">
-            <hr/>
-            <li (click)="handleLogout()">
-              <p>Logout</p>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <button style="color: #FFD43B; font-size: medium;" (click)="handleLogout()">
+        <i class="fa-solid fa-right-from-bracket mr-2"></i> Logout
+      </button>
     </ng-template>
   </div>
 </nav>

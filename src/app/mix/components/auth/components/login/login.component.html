@@ -1,27 +1,42 @@
-
 <div class="container">
-	<div class="screen">
-			<form class="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-				<div class="login__field">
-                    <label for="password" class="password"> Email</label>
-					<input type="email" formControlName="email" class="login__input" >
-				</div>
-				<div *ngIf="submitted && loginForm.get('email')?.hasError('required')">
-					Email do not match!
-				  </div>
-                <div class="login__field">
-                    <label for="password" class="password"> Password</label>
-					<input type="password" formControlName="password" class="login__input" >
-				</div>
-				<div *ngIf="submitted && loginForm.get('password')?.hasError('required')">
-					password do not match!
-				  </div>
-				<button class="button login__submit">
-					<span class="button__text">Log In Now</span>
-				</button>
-				<div class="signup-container">
-					Don't have an account? <a routerLink="/auth/choose">Sign up</a>
-				</div>
-			</form>
-	</div>
+  <div class="spinner" *ngIf="spinner"> </div>
+  <div class="screen">
+    <div class="loginicon">
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="128px" height="128px" viewBox="0,0,256,256">
+        <g fill="#fbc11a" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+          <g transform="scale(2,2)">
+            <path d="M64,73c12.7,0 23,-10.3 23,-23c0,-12.7 -10.3,-23 -23,-23c-12.7,0 -23,10.3 -23,23c0,12.7 10.3,23 23,23zM64,33c9.4,0 17,7.6 17,17c0,9.4 -7.6,17 -17,17c-9.4,0 -17,-7.6 -17,-17c0,-9.4 7.6,-17 17,-17zM25.2,108.1c0.5,0.4 1.1,0.5 1.7,0.5c1,0 2.1,-0.5 2.6,-1.5c7.1,-12.4 20.3,-20.1 34.5,-20.1v0v0c3.9,0 7.7,0.6 11.4,1.7c1.3,0.4 2.8,-0.2 3.4,-1.5c0,0 0,0 0,-0.1c0.8,-1.7 0,-3.7 -1.8,-4.2c-4.2,-1.2 -8.5,-1.9 -13,-1.9v0v0c-16.3,0 -31.5,8.8 -39.6,23c-0.8,1.4 -0.5,3.2 0.8,4.1zM84,99v7c0,11 9,20 20,20c11,0 20,-9 20,-20v-7c0,-2.8 -2.2,-5 -5,-5h-1v-8c0,-7.7 -6.3,-14 -14,-14c-7.7,0 -14,6.3 -14,14v8h-1c-2.8,0 -5,2.2 -5,5zM104,110.5c-1.7,0 -3,-1.3 -3,-3c0,-1.7 1.3,-3 3,-3c1.7,0 3,1.3 3,3c0,1.7 -1.3,3 -3,3zM96,86c0,-4.4 3.6,-8 8,-8c4.4,0 8,3.6 8,8v8h-16z"></path>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <form class="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="login__field">
+        <label for="email" class="password">
+          <i class="fas fa-envelope mr-2"></i> Email
+        </label>
+        <input type="email" formControlName="email" class="login__input">
+        <small style=" bottom: 1px" *ngIf="submitted && (loginForm.get('email')?.hasError('required') || loginForm.get('email')?.hasError('email'))">
+          Email required
+        </small>
+      </div>
+
+      <div class="login__field">
+        <label for="password" class="password">
+          <i class="fas fa-lock mr-2"></i> Password
+        </label>
+        <input type="password" formControlName="password" class="login__input">
+        <small style=" bottom: 1px" *ngIf="submitted && (loginForm.get('password')?.hasError('required') || error)">
+          {{error}}
+        </small>
+      </div>
+
+      <button class="button login__submit">
+        <span class="button__text">Log In Now</span>
+      </button>
+      <div class="signup-container">
+        Don't have an account? <a routerLink="/auth/choose">Sign up</a>
+      </div>
+    </form>
+  </div>
 </div>

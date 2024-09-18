@@ -1,45 +1,76 @@
-<section class="apply-form-section">
-  <h1>Postuler à un Offre d'Emploi ou Stage</h1>
-  <form class="apply-form" [formGroup]="applyForm" (ngSubmit)="onSubmit()">
-    <!-- Personal Information -->
-    <div class="form-group">
-      <label for="fullname">Nom Complet</label>
-      <input type="text" id="fullname" formControlName="fullName" name="fullname"  >
-    </div>
+<div class="apply">
+  <section class="apply-form-section">
+     <h1> <i class="fa-solid fa-user-plus" style="color: #053372;"></i> Apply for a Job </h1>
+    <form class="apply-form" [formGroup]="applyForm" (ngSubmit)="onSubmit()">
 
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" formControlName="email" name="email" >
-    </div>
+      <div class="form-group margin_4">
+        <label for="fullname">Full Name</label>
+        <input type="text" id="fullname" formControlName="fullName" name="fullname">
+        <div *ngIf="(applyForm.get('fullName').touched || isSubmit) && applyForm.get('fullName').invalid" class="error-message">
+          <small *ngIf="applyForm.get('fullName').errors?.['required']">Full name is required.</small>
+        </div>
+      </div>
 
-    <div class="form-group">
-      <label for="phone">Téléphone</label>
-      <input type="tel" id="phone" formControlName="phone" name="phone" >
-    </div>
+      <div class="form-group margin_4">
+        <label for="email">Email</label>
+        <input type="email" id="email" formControlName="email" name="email">
+        <div *ngIf="(applyForm.get('email').touched || isSubmit) && applyForm.get('email').invalid" class="error-message">
+          <small *ngIf="applyForm.get('email').errors?.['required']">Email is required.</small>
+          <small *ngIf="applyForm.get('email').errors?.['email'] || applyForm.get('email').errors?.['pattern']">Please enter a valid email.</small>
+        </div>
+      </div>
 
-    <div class="form-group">
-      <label for="experience">Experience</label>
-      <input type="text" id="experience" formControlName="experience" name="experience"  >
-    </div>
+      <div class="form-group margin_4">
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" formControlName="phone" name="phone" placeholder="+212" class="form-control">
+        <div *ngIf="(applyForm.get('phone').touched || isSubmit) && applyForm.get('phone').invalid" class="error-message">
+          <small *ngIf="applyForm.get('phone').errors?.['required']">Phone number is required.</small>
+          <small *ngIf="applyForm.get('phone').errors?.['pattern']">Please enter a valid phone number (+212 followed by 9 digits, no 0 after +212).</small>
+        </div>
+      </div>
 
-    <!-- Job Preference -->
-    <div class="form-group">
-      <label for="jobType">Type de Poste</label>
-      <input type="text" id="jobType" formControlName="jobType" name="jobType"  >
-    </div>
+      <div class="form-group margin_4">
+        <label for="experience">Experience</label>
+        <select id="experience" formControlName="experience" name="experience" class="form-control">
+          <option value="">-- Select Experience --</option>
+          <option value="Beginner">Beginner</option>
+          <option value="Less than 1 year">Less than 1 year</option>
+          <option value="1 to 3 years">1 to 3 years</option>
+          <option value="3 to 5 years">3 to 5 years</option>
+          <option value="5 to 10 years">5 to 10 years</option>
+          <option value="10 to 20 years">10 to 20 years</option>
+          <option value="More than 20 years">More than 20 years</option>
+        </select>
+        <div *ngIf="(applyForm.get('experience').touched || isSubmit) && applyForm.get('experience').invalid" class="error-message">
+          <small *ngIf="applyForm.get('experience').errors?.['required']">Experience is required.</small>
+        </div>
+      </div>
 
-    <!-- Attachments -->
-    <div class="form-group">
-      <label for="resume">CV (Format PDF)</label>
-      <input type="file" id="resume" (change)="onFileChange($event,'cv')"  formControlName="resume" name="resume" accept=".pdf">
-    </div>
+      <div class="form-group margin_4">
+        <label for="jobType">Job Type</label>
+        <input type="text" id="jobType" formControlName="jobType" name="jobType">
+        <div *ngIf="(applyForm.get('jobType').touched || isSubmit) && applyForm.get('jobType').invalid" class="error-message">
+          <small *ngIf="applyForm.get('jobType').errors?.['required']">Job type is required.</small>
+        </div>
+      </div>
 
-    <div class="form-group">
-      <label for="Lettre">Lettre de Motivation</label>
-      <input type="file" (change)="onFileChange($event,'lettre')"  id="Lettre" formControlName="Lettre" name="Lettre" accept=".pdf">
-    </div>
+      <div class="form-group margin_4">
+        <label for="resume">Resume (PDF Format)</label>
+        <input type="file" id="resume" (change)="onFileChange($event,'cv')" formControlName="resume" name="resume" accept=".pdf">
+        <div *ngIf="(applyForm.get('resume').touched || isSubmit) && applyForm.get('resume').invalid" class="error-message">
+          <small *ngIf="applyForm.get('resume').errors?.['required']">Resume is required.</small>
+        </div>
+      </div>
 
-    <!-- Submit Button -->
-    <button type="submit" class="submit-button">Soumettre la Candidature</button>
-  </form>
-</section>
+      <div class="form-group margin_4">
+        <label for="Lettre">Cover Letter (PDF Format)</label>
+        <input type="file" id="Lettre" (change)="onFileChange($event,'lettre')" formControlName="Lettre" name="Lettre" accept=".pdf">
+        <div *ngIf="(applyForm.get('Lettre').touched || isSubmit) && applyForm.get('Lettre').invalid" class="error-message">
+          <small *ngIf="applyForm.get('Lettre').errors?.['required']">Cover letter is required.</small>
+        </div>
+      </div>
+
+      <button type="submit" class="btn_submit  w-full  font-semibold py-2 rounded-lg"> <i class="fa-solid fa-floppy-disk mr-2"></i>Submit Application</button> <!-- Translated "Soumettre la Candidature" -->
+    </form>
+  </section>
+</div>

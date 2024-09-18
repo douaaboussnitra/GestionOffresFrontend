@@ -1,16 +1,18 @@
 
-        /* Main Section */
         .main-section {
-            text-align: center;
             padding: 50px 20px;
-            background-color: #fefefe;
+            background-color: #e8f3fb;
+            height: 94vh;
+            text-align: center;
         }
 
         .main-section h1 {
-            color: #5f1db0;
+            color: #053372;
             font-size: 36px;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             font-weight: bold;
+            text-align: center;
+
         }
 
         .options {
@@ -20,28 +22,38 @@
         }
 
         .option-card {
-            background-color: #ffffff;
+            background-color: #c5d3ded4;
             border-radius: 8px;
-            /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+            box-shadow: 0px 0px 24px #8395b0;
             padding: 20px;
             width: 400px;
+            transition: 0.4s;
+        }
+
+        .option-card:hover{
+          transform: scale(1.03);
         }
 
         .option-card h2 {
-            color: #5835a9;
-            font-size: 24px;
-            margin-bottom: 20px;
+            color: #053372;
+            font-size: 1.5em;
+            margin-bottom: 15px;
             font-weight: bold;
+            margin-top: 15px;
         }
 
         .option-card button {
-            background-color: #5f1db0;
-            color: white;
+            background-color: #053372;
+            color: #fbc11a;
             padding: 10px 20px;
-            border: none;
-            border-radius: 50px;
             font-size: 16px;
+            border-radius: 15px;
         }
+
+        .option-card button:hover {
+          font-weight: bold;
+          
+      }
 
 
         .img_c_r {

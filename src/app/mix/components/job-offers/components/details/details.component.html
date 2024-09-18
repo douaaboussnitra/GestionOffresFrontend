@@ -6,55 +6,55 @@
         <div class="relative">
             <img src="https://images.unsplash.com/photo-1593642634443-44adaa06623a" alt="Office image" class="header-img">
             <div class="badge">{{ formData.contractType }}</div>
-            <button class="apply-button" [routerLink]="['/job-offers/apply', id]">Apply for job</button>
         </div>
+
+
 
         <div class="content">
+          <div class="info">
             <div class="company-info">
-                <img src="https://via.placeholder.com/50" alt="Company logo" class="company-logo">
-                <div>
+              <img src="assets/company.svg" alt="Company Logo" class="company-logo"/>
+              <div>
                     <h2 class="job-title">{{ formData.title }}</h2>
-                    <p class="posted-date">{{formData.createdAt|date: 'dd-MM-yyyy'}}</p>
+                    <p class="job-title">{{ formData.companyName }}</p>
+
                 </div>
             </div>
-            <p class="location"><i class="fas fa-map-marker-alt"></i>{{formData.location}}</p>
-            <p class="website">https://douaaaa.com</p>
-            <p class="salary">{{formData.salary}} MAD</p>
-
-            <!-- Job Information -->
-            <div class="job-info">
+            <div class="Jobinformation">
+              <div class="job-info">
                 <h3>Job Information</h3>
                 <ul>
-                    <li><strong>VIEWS:</strong> 2433 Views</li>
-                    <li><strong>DATE POSTED:</strong> {{formData.createdAt|date: 'dd-MM-yyyy'}}</li>
-                    <li><strong>EMPLOYER:</strong> Sitesplicers</li>
-                </ul>
+                    <li><p class="location"><i class="fas fa-map-marker-alt mr-2"  style="color: #c29e0c;"></i>{{formData.location}}</p>
+                    </li>
+                    <li><p class="salary"><i class="fa-solid fa-hand-holding-dollar mr-2" style="color: #c29e0c;"></i> {{formData.salary}} MAD</p>
+                    </li>
+                    </ul>
+                    </div>
+            <div class="job-info">
+              <h3>Job Information</h3>
+              <ul>
+                  <li> <i class="fa-regular fa-calendar-days mr-2" style="color: #c29e0c;"></i><strong>DATE POSTED:</strong>  {{formData.createdAt|date: 'dd-MM-yyyy'}}</li>
+                  <li> <i class="fa-solid fa-bars-progress  mr-2" style="color: #c29e0c;"></i><strong>Company hierarchy Level:</strong>  {{ formData.hierarchyLevel }}</li>
+                  <li class="flex"><h3 class="job-skills-title"> <i class="fa-solid fa-laptop-code mr-2" style="color: #c29e0c;"></i>Job Skills : </h3>
+                  <div class="job-skills ml-2">
+                      <span>{{ formData.skills }}</span>
+                  </div>
+                </li>
+              </ul>
 
-                <h3 class="job-skills-title">Job Skills</h3>
-                <div class="job-skills">
-                    <span>{{ formData.skills }}</span>
-                </div>
-            </div>
-
-            <!-- Job Description -->
-            <div class="job-description">
-                <h3>Job Description:</h3>
-                <p>{{ formData.description }}</p>
-            </div>
-
-            <!-- Share Profile -->
-            <div class="share-profile">
-                <h3>Share Profile:</h3>
-                <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
-                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-                <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            </div>
-
-            <!-- Location -->
-            <div class="location-section">
-                <h3>Location</h3>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1480.8475547362166!2d-7.641500861358874!3d33.542668943338285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda62d3c77d56d57%3A0x39c864bef89a71f5!2sTechnopark%2C%20Casablanca!5e1!3m2!1sfr!2sma!4v1723709444685!5m2!1sfr!2sma" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>            </div>
         </div>
+          </div>
+
+          </div>
+
+            <div class="job-description">
+                <h3> <i class="fa-solid fa-list-ul mr-2" style="color: #c29e0c;"></i>Job Description:</h3>
+                <p>{{ formData.description }}</p>
+
+            </div>
+    </div>
+    <div *ngIf="roleId==2" class="apply-button-container">
+      <button  class="apply-button" [routerLink]="['/job-offers/apply', id]">Apply for job</button>
     </div>
   </div>
 

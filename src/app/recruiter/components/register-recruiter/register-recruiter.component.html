@@ -1,67 +1,74 @@
-
 <form class="Register_rec" [formGroup]="registerFormrec" (ngSubmit)="onSubmit()">
-<div class="bg-gray-100 flex items-center justify-center min-h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 class="text-2xl font-bold mb-6 text-gray-800 text-center">Recruiter Registration</h2>
+  <div class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="shadow_box p-8 rounded-lg w-full max-w-md">
+      <h2 class="registerh2 text-2xl font-bold mb-6 text-center">Recruiter Registration</h2>
 
-            <!-- Full Name -->
-            <div class="mb-4">
-                <label class="block text-gray-700 font-semibold mb-2" for="name">Full Name</label>
-                <input class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" formControlName="name" type="text" id="name" name="name" required>
-            </div>
+      <!-- Full Name -->
+      <div class="margin_4">
+        <label class="registerh2 block font-semibold mb-2" for="name">
+          <i class="fas fa-user mr-2"></i> Full Name
+        </label>
+        <input class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" formControlName="name" type="text" id="name" name="name" required>
+        <ng-container *ngIf="(registerFormrec.get('name').touched || isSubmit) && registerFormrec.get('name').invalid" class="error-message">
+          <small *ngIf="registerFormrec.get('name').errors?.['required']">Full name is required.</small>
+        </ng-container>
+      </div>
 
+      <!-- Email Address -->
+      <div class="margin_4">
+        <label class="registerh2 block font-semibold mb-2" for="email">
+          <i class="fas fa-envelope mr-2"></i> Email Address
+        </label>
+        <input class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" formControlName="email" type="email" id="email" name="email" required>
+        <ng-container *ngIf="(registerFormrec.get('email').touched || isSubmit) && registerFormrec.get('email').invalid" class="error-message">
+          <small *ngIf="registerFormrec.get('email').errors?.['required']">Email is required.</small>
+          <small *ngIf="registerFormrec.get('email').errors?.['email'] || registerFormrec.get('email').errors?.['pattern']">Please enter a valid email address.</small>
+        </ng-container>
+      </div>
 
+      <!-- Phone Number -->
+      <div class="margin_4">
+        <label class="registerh2 block font-semibold mb-2" for="phone">
+          <i class="fas fa-phone mr-2"></i> Phone Number
+        </label>
+        <input class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" formControlName="phone" type="tel" id="phone" name="phone" required>
+        <ng-container *ngIf="(registerFormrec.get('phone').touched  || isSubmit) && registerFormrec.get('phone').invalid" class="error-message">
+          <small *ngIf="registerFormrec.get('phone').errors?.['required']">Phone number is required.</small>
+          <small *ngIf="registerFormrec.get('phone').errors?.['pattern']">Please enter a valid phone number (10 digits).</small>
+        </ng-container>
+      </div>
 
-            <!-- Email Address -->
-            <div class="mb-4">
-                <label class="block text-gray-700 font-semibold mb-2" for="email">Email Address</label>
-                <input class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" formControlName="email" type="email" id="email" name="email" required>
-            </div>
+      <!-- Password -->
+      <div class="margin_4">
+        <label class="registerh2 block font-semibold mb-2" for="password">
+          <i class="fas fa-lock mr-2"></i> Password
+        </label>
+        <input class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" formControlName="password" (change)="passwordMatchChange(pass.value, confirm.value)" #pass type="password" id="password" name="password" required>
+        <ng-container *ngIf="(registerFormrec.get('password').touched || isSubmit) && registerFormrec.get('password').invalid" class="error-message">
+          <small *ngIf="registerFormrec.get('password').errors?.['required']">Password is required.</small>
+          <small *ngIf="registerFormrec.get('password').errors?.['minlength']"> Min Length Password is 8.</small>
+        </ng-container>
+      </div>
 
-            <!-- Phone Number -->
-            <div class="mb-4">
-                <label class="block text-gray-700 font-semibold mb-2" for="phone">Phone Number</label>
-                <input class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" formControlName="phone" type="tel" id="phone" name="phone" required>
-            </div>
+      <!-- Confirm Password -->
+      <div class="margin_4">
+        <label class="registerh2 block font-semibold mb-2" for="password_conf">
+          <i class="fas fa-lock mr-2"></i> Confirm Password
+        </label>
+        <input class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" formControlName="password_conf" (change)="passwordMatchChange(pass.value, confirm.value)" #confirm type="password" id="password_conf" name="password_conf" required>
+        <ng-container *ngIf="(registerFormrec.get('password_conf').touched || isSubmit) && registerFormrec.get('password_conf').invalid" class="error-message">
+          <small *ngIf="registerFormrec.get('password_conf').errors?.['required']">Please confirm your password.</small>
+        </ng-container>
+      </div>
+      <div *ngIf="passwordMatch">
+        Passwords do not match!
+      </div>
 
-            <!-- Password -->
-            <div class="mb-4">
-                <label class="block text-gray-700 font-semibold mb-2" for="password">Password</label>
-                <input class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" formControlName="password" type="password" id="password" name="password" required>
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mb-4">
-                <label class="block text-gray-700 font-semibold mb-2" for="password_conf">Confirm Password</label>
-                <input class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" formControlName="password_conf" type="password" id="password_conf" name="password_conf" required>
-            </div>
-
-
-            <!-- Recruiter Role/Position
-            <div class="mb-4">
-                <label class="block text-gray-700 font-semibold mb-2" for="role">Recruiter Role/Position</label>
-                <input class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" formControlName="name" type="text" id="role" name="role" required>
-            </div>  -->
-
-
-            <!-- Country
-            <div class="mb-4">
-                <label class="block text-gray-700 font-semibold mb-2" for="country">Country</label>
-                <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" id="country" name="country" required>
-                    <option value="">Select your country</option>
-                    <option value="USA">United States</option>
-                    <option value="CAN">Canada</option>
-                    <option value="UK">United Kingdom</option>
-                    <!-- Add more options as needed
-                </select>
-            </div> -->
-
-
-
-            <!-- Submit Button -->
-            <button class="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" type="submit">Register</button>
+      <!-- Submit Button -->
+      <button class="btn_submit w-full font-semibold py-2 mt-2 rounded-lg" type="submit">
+        <i class="fa-solid fa-floppy-disk mr-2"></i> Register
+      </button>
 
     </div>
-    </div>
-  </form>
-
+  </div>
+</form>

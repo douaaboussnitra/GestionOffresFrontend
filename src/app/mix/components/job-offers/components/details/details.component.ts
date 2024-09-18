@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { jobOffersService } from '../../service/job-offers.service';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../../auth/service/auth.service';
 
 @Component({
   selector: 'app-details',
@@ -10,8 +11,17 @@ import { ActivatedRoute } from '@angular/router';
 export class DetailsComponent implements OnInit {
   formData: any;
   id: string="";
-  constructor(private route: ActivatedRoute,private jobOffersService: jobOffersService ) {}
+  roleId:number;
+
+  constructor(private route: ActivatedRoute,private jobOffersService: jobOffersService,private aut : AuthService ) {}
   ngOnInit() {
+ this.aut.user$.subscribe({
+  next: (user: any) => {
+    this.roleId=user.role;
+  }
+ }
+ );
+
     this.route.paramMap.subscribe((params:any) => {
       this.id = params.get('id');
     });
@@ -26,4 +36,5 @@ export class DetailsComponent implements OnInit {
     );
 
   }
+
 }

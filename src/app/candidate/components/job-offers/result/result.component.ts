@@ -1,9 +1,7 @@
+import { apiUrl } from 'src/app/environements/backend';
 import { ApplicationService } from 'src/app/recruiter/components/job-offers/applications/application.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CandidateService } from 'src/app/candidate/candidate.service';
-
-
 
 @Component({
   selector: 'app-result',
@@ -13,11 +11,13 @@ import { CandidateService } from 'src/app/candidate/candidate.service';
 export class ResultComponent implements OnInit {
   formData: any;
   id: any;
+  api_Url
 
   constructor(private route: ActivatedRoute,private applicationService: ApplicationService ) {}
   ngOnInit() {
-    this.route.paramMap.subscribe((params:any) => {
-      this.id = +params.get('id');
+    this.api_Url=apiUrl.replace('/api','') //delete the api replace par "" becouse we have folder uploads
+    this.route.paramMap.subscribe((params:any) => {// pour params dyal application
+      this.id = params.get('id');
     });
     this.applicationService.getAllApplicationById(this.id).subscribe( {
       next : (response) => {
@@ -28,7 +28,7 @@ export class ResultComponent implements OnInit {
       }
     }
     );
-
   }
+
 }
 

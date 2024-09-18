@@ -15,6 +15,10 @@ export class ApplyComponent implements OnInit {
   fileCv: any;
   fileMotiva: any;
   idCandidat: any;
+  isSubmit:boolean=false;
+  idapp: any;
+
+
 
   constructor(
     private route: ActivatedRoute,
@@ -25,24 +29,35 @@ export class ApplyComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.idCandidat = localStorage.getItem('CANDIDAT_ID')
-    this.route.paramMap.subscribe((params: any) => {
-      console.log("1 in")
-      this.idJob = params.get('id');
+    this.aut.user$.subscribe({
+      next: (user) => {
+        this.idCandidat = user?.id
+      },
+
+      error: (error) => {
+        console.error(error);
+      }
     });
+    this.route.paramMap.subscribe((params: any) => {
+      this.idJob = params.get('id');
+
+    });
+
+
     this.applyForm = this.formBuilder.group({
-      fullName: ['', Validators.required], // Changed from 'fullname' to 'fullName'
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      fullName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email,Validators.pattern(/^[a-zA-Z][a-zA-Z0-9._%+-]*@gmail\.com$/)]],
+      phone: ['+212', [Validators.required, Validators.pattern(/^\+212[1-9]\d{8}$/) ]],
       jobType: ['', Validators.required],
       resume: [null, Validators.required],
       Lettre: [null, Validators.required],
       experience: ['', Validators.required],
-      roleId: ['3', Validators.required]
+      roleId: [null, Validators.required]
     });
   }
 
   onSubmit(): void {
+    this.isSubmit=true;
     if (this.applyForm.valid) {
       const formData = new FormData();
       formData.append('fullName', this.applyForm.get('fullName')?.value);
@@ -64,13 +79,17 @@ export class ApplyComponent implements OnInit {
           console.error('Error submitting application:', error);
         }
       });
-    }
-  }
 
-  onFileChange(event: Event, type: string) {
-    const input = event.target as HTMLInputElement;
+
+        
+      }
+    }
+
+
+  onFileChange(element: Event, type: string) {
+    const input:any = element.target;
     if (input.files?.length) {
-      const file = input.files[0];
+      const file = input.files[0]; // 0 hitach uplode lfile 1
       if (type === 'cv') {
         this.fileCv = file;
       } else {

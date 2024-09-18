@@ -1,0 +1,22 @@
+.list {
+  background-color: #e8f3fb;
+  height:95vh;
+  }
+
+  .icon-color {
+    color: #053372;
+  }
+
+  .btnadd{
+    color: #f1c40f;
+    background-color: #053372;
+  }
+
+  .block{
+    box-shadow: 0px 0px 24px #8395b0;
+    background-color: #c5d3ded4;
+  }
+
+tr{
+  background-color: #cbd8e3 !important;
+}

@@ -1,9 +1,10 @@
 .navbar {
-  background-color: #8c2ec3;
+  background-color: #053372;
   color: white;
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
+
 }
 
 .navbar a {
@@ -11,3 +12,45 @@
   margin: 0 15px;
 }
 
+#go_back{
+  top: 5%;
+  position: absolute;
+  font-size: medium;
+  transform: scale(0.8);
+}
+
+.logo_goback,.navbar-right,.titlerole{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+.logo{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 1.5em;
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 500;
+  color: #fbc11a;
+}
+.logo .primary{
+  color: #ffff;
+  font-weight: bold;
+  margin-right: 2px;
+}
+
+.goback{
+  color: #ffffff;
+  font-size: 2em;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.offers{
+  color: #f1c40f;
+  font-size: 1.4em;
+  cursor: pointer;
+}

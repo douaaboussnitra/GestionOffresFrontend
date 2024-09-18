@@ -5,20 +5,22 @@
 	justify-content: center;
   min-width: 100vw;
 	min-height: 100vh;
-    background-image: url('../../../../../../assets/login.webp');
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: #e8f3fb;
+    position: relative;
+
 }
 
 .screen {
-	background:#5f1db0;
 	position: relative;
 	height: 600px;
 	width: 360px;
-	box-shadow: 0px 0px 24px #5C5696;
+	box-shadow: 0px 0px 24px #8395b0;
+  background-color: #c5d3ded4;
 }
 .login {
-	width: 350px;
+	width: 100%;
 	padding: 30px;
 	padding-top: 156px;
 }
@@ -29,51 +31,52 @@
 }
 .login__input {
 	border: none;
-	border-bottom: 2px solid #ffffff;
+	border-bottom: 2px solid #053372;
 	background: none;
 	padding: 10px;
 	padding-left: 24px;
 	font-weight: 700;
 	width: 100%;
 	transition: .2s;
-    margin-top: 15px;
-    color: #FFF;
-}
-.login__input:hover {
-	outline: none;
-	border-bottom-color: #6d0ea086;
+  margin-top: 15px;
+  color: #000000;
 }
 
 .login__submit {
-	background: #fff;
+	background: #fbc11a;
 	font-size: 14px;
 	margin-top: 30px;
 	padding: 16px 20px;
 	border-radius: 26px;
-	border: 1px solid #D4D3E8;
+	border: 1px solid #000000;
 	text-transform: uppercase;
 	font-weight: 700;
 	display: flex;
 	align-items: center;
 	width: 100%;
-	box-shadow: 0px 2px 2px #bb429c;
+	box-shadow: 0px 2px 2px #053372;
 	cursor: pointer;
 	transition: .2s;
-    justify-content: center;
-
+  justify-content: center;
+  position: relative;
 }
-.login__submit:hover {
-	border-color: #6A679E;
-	outline: none;
+
+.login__submit .button__text {
+ color: #053372;
 }
 .password {
-	color: #ffffff;
+	color: #053372;
     position: absolute;
     height: 140px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     font-size: 15px;
 }
+
+.password i {
+    margin-top: 2px;
+}
+
 
 input  {
 	outline: none !important;
@@ -81,8 +84,41 @@ input  {
 }
 
 .signup-container a {
-	color: #f21bb5;
+	color: #6ea8d4;
 }
+.signup-container  {
+  margin-top: 20px;
+}
+
+
+.loginicon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+pointer-events: none;
+left: -10px;
+top: 0;
+}
+
+
+
+
+.spinner{
+  background-image: url("../../../../../../assets/spinnergif.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  z-index: 3;
+  width: 99%;
+  height: 100%;
+  opacity: 0.7;
+  border-radius: 26px;
+  background-position: center;
+}
+
+
 
 
 

@@ -1,12 +1,69 @@
-<section class="submitted-info">
-  <h2>Information Soumise</h2>
-  <p><strong>Nom Complet:</strong> {{ formData.fullName }}</p>
-  <p><strong>Email:</strong> {{ formData.email }}</p>
-  <p><strong>Téléphone:</strong> {{ formData.phone }}</p>
-  <p><strong>experience:</strong> {{ formData.jobType }}</p>
-  <p><strong>Type de Poste:</strong> {{ formData.experience }}</p>
-  <p><strong>Lettre de Motivation:</strong></p>
-  <p>{{ formData.coverLetter }}</p>
-  <p><strong>CV:</strong> {{ formData.resume?.name }}</p>
-</section>
+<section class="submitted-info p-6 bg-gray-100 rounded-lg shadow-md">
+  <div class="flex items-center mb-4">
 
+    <h2 class="text-2xl font-bold text-gray-800"> <i class="fas fa-info-circle text-yellow-500 text-3xl mr-3"></i>Submitted Information</h2>
+  </div>
+
+  <table class="min-w-full bg-white shadow rounded-lg">
+    <tbody>
+      <tr class="border-b">
+        <td class="px-6 py-4 flex items-center text-gray-700">
+          <i class="fas fa-user mr-3" style="color: #f1c40f;"></i>
+          <strong class="mr-2">Full Name:</strong>
+        </td>
+        <td class="px-6 py-4">{{ formData.fullName }}</td>
+      </tr>
+      <tr class="border-b">
+        <td class="px-6 py-4 flex items-center text-gray-700">
+          <i class="fas fa-envelope mr-3" style="color: #f1c40f;"></i>
+          <strong class="mr-2">Email:</strong>
+        </td>
+        <td class="px-6 py-4">{{ formData.email }}</td>
+      </tr>
+      <tr class="border-b">
+        <td class="px-6 py-4 flex items-center text-gray-700">
+          <i class="fas fa-phone mr-3" style="color: #f1c40f;"></i>
+          <strong class="mr-2">Phone:</strong>
+        </td>
+        <td class="px-6 py-4">{{ formData.phone }}</td>
+      </tr>
+      <tr class="border-b">
+        <td class="px-6 py-4 flex items-center text-gray-700">
+          <i class="fas fa-briefcase mr-3" style="color: #f1c40f;"></i>
+          <strong class="mr-2">Experience:</strong>
+        </td>
+        <td class="px-6 py-4">{{ formData.experience }}</td>
+      </tr>
+      <tr class="border-b">
+        <td class="px-6 py-4 flex items-center text-gray-700">
+          <i class="fas fa-briefcase mr-3" style="color: #f1c40f;"></i>
+          <strong class="mr-2">Job Type:</strong>
+        </td>
+        <td class="px-6 py-4">{{ formData.jobType }}</td>
+      </tr>
+      <tr class="border-b">
+        <td class="px-6 py-4 flex items-center text-gray-700">
+          <i class="fas fa-file-alt mr-3" style="color: #f1c40f;"></i>
+          <strong class="mr-2">Cover Letter:</strong>
+        </td>
+        <td class="px-6 py-4">
+          <a target="_blank" [href]="api_Url+'/'+formData.filemotiva" class="text-blue-600 underline">
+            here
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td class="px-6 py-4 flex items-center text-gray-700">
+          <i class="fas fa-file-alt mr-3" style="color: #f1c40f;"></i>
+          <strong class="mr-2">Resume:</strong>
+        </td>
+        <td class="px-6 py-4">
+          <a target="_blank" [href]="api_Url+'/'+formData.filecv" class="text-blue-600 underline">
+            here
+          </a>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</section>
