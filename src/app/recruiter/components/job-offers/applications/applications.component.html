@@ -1,4 +1,4 @@
-<div class="bg-gray-100 min-h-screen flex flex-col items-center py-8 applications">
+<div *ngIf="formData" class="bg-gray-100 min-h-screen flex flex-col items-center py-8 applications">
 
   <div class="block shadow-md rounded-lg p-6 mb-8 w-3/4 text-center">
     <h2 class=" textColor text-xl font-semibold ">Number of Applicants: <span class="text-blue-600">{{formData.length}}</span></h2>
@@ -37,7 +37,7 @@
     </ul>
     <div class="btn_contaire mt-4">
       <button (click)="redirectToGmail()">
-        <i class="fas fa-paper-plane"></i> Send 
+        <i class="fas fa-paper-plane"></i> Send
       </button>
     </div>
 

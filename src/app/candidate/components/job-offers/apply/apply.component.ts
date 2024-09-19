@@ -52,7 +52,6 @@ export class ApplyComponent implements OnInit {
       resume: [null, Validators.required],
       Lettre: [null, Validators.required],
       experience: ['', Validators.required],
-      roleId: [null, Validators.required]
     });
   }
 
@@ -81,7 +80,7 @@ export class ApplyComponent implements OnInit {
       });
 
 
-        
+
       }
     }
 

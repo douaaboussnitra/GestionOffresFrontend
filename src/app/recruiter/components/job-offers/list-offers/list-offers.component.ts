@@ -34,7 +34,7 @@ export class ListOffersComponent implements OnInit {
 
     this.authService.user$.subscribe({
       next: (user) => {
-        this.idRec = user.id;
+        this.idRec = user?.id;
       },
       error: (error) => {
         console.error(error);
