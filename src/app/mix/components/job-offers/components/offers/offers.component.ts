@@ -7,7 +7,7 @@ import { jobOffersService } from '../../service/job-offers.service';
   styleUrls: ['./offers.component.css']
 })
 export class offersComponent implements OnInit {
-  filteredJobOffers: any;
+  filteredJobOffers: any = [];
   Skills: string[] = [];
   contrat = [
     { value: "fulltime", label: "Full-time" },
